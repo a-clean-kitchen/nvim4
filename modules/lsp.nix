@@ -8,7 +8,7 @@ in
   options.vim.lsp = { };
 
   config = {
-    vim.luaConfigRC = ''
+    vim.luaConfigRC = /*lua*/ ''
       -- Enable lspconfig
       local lspconfig = require('lspconfig')
 

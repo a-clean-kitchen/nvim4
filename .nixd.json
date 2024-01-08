@@ -1,9 +1,24 @@
 {
+  "eval": {
+    "enable": true,
+    "target": {
+      "args": [
+        "-f",
+        "default.nix"
+      ],
+      "installable": ".#packages.x86_64-linux.default"
+    },
+    "depth": 10,
+    "workers": 5
+  },
+  "formatting": {
+    "command": "nixpkgs-fmt"
+  },
   "options": {
     "enable": true,
     "target": {
       "args": [],
-      "installable": "self#packages.default"
+      "installable": ".#neovimOptions.options"
     }
   }
 }

@@ -2,78 +2,84 @@
   description = "Neovim Configuration built using Nix";
 
   outputs = inputs @ { self, nixpkgs, flake-parts, neovim, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-      perSystem = { config, self', inputs', system, ... }:
-        let
-          # Extend lib with personal functions
-          lib = nixpkgs.lib.extend
-            (self: super: { my = import ./lib { inherit pkgs inputs; lib = self; }; });
+    let
+      system = "x86_64-linux";
 
-          inherit (lib.my) pluginFilter;
+      # Extend lib with personal functions
+      lib = nixpkgs.lib.extend
+        (self: super: { my = import ./lib { inherit pkgs inputs; lib = self; }; });
 
-          plugins = pluginFilter inputs [
-                "self"
-                "nixpkgs"
-                "flake-parts"
-                "neovim"
-                "nixd"
-                "nvim-treesitter"
-          ];
+      plugins = lib.my.pluginFilter inputs [
+        "self"
+        "nixpkgs"
+        "flake-parts"
+        "neovim"
+        "nixd"
+        "nvim-treesitter"
+        "flake-compat"
+      ];
 
-          # Extend pkgs with personal derivations
-          neovimPackageOverlay = self: super: {
-            neovim = neovim.packages.${self.system}.neovim;
-          };
+      # Extend pkgs with personal derivations
+      neovimPackageOverlay = self: super: {
+        neovim = neovim.packages.${self.system}.neovim;
+      };
 
-          pluginOverlay = import ./plugins.nix {
-            inherit plugins inputs lib;
-          };
+      pluginOverlay = import ./plugins.nix {
+        inherit plugins inputs lib;
+      };
 
-          nixdOverlay = self: supper: {
-            inherit (inputs.nixd.packages.${system}) nixd;
-          };
+      nixdOverlay = self: supper: {
+        inherit (inputs.nixd.packages.${self.system}) nixd;
+      };
 
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ neovimPackageOverlay pluginOverlay nixdOverlay ];
-          };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ neovimPackageOverlay pluginOverlay nixdOverlay ];
+      };
 
-          # The base configuration of all neovim bundles
-          baseCfg = import ./base { };
+      # The base configuration of all neovim bundles
+      baseCfg = import ./base { };
 
-          nvim4 = pkgs.callPackage ./pkg.nix {
-            inherit lib pkgs baseCfg;
-          };
+      nvim4 = pkgs.callPackage ./pkg.nix {
+        inherit lib pkgs baseCfg;
+      };
+    in
+    {
+      packages."${system}" = {
+        default = self.packages."${system}".base;
+        base = nvim4.full.neovim;
+        # .-. .-')                    .-') _  _ .-') _               ('-.    .-')    
+        # \  ( OO )                  ( OO ) )( (  OO) )            _(  OO)  ( OO ).  
+        #  ;-----.\  ,--. ,--.   ,--./ ,--,'  \     .'_  ,--.     (,------.(_)---\_) 
+        #  | .-.  |  |  | |  |   |   \ |  |\  ,`'--..._) |  |.-')  |  .---'/    _ |  
+        #  | '-' /_) |  | | .-') |    \|  | ) |  |  \  ' |  | OO ) |  |    \  :` `.  
+        #  | .-. `.  |  |_|( OO )|  .     |/  |  |   ' | |  |`-' |(|  '--.  '..`''.) 
+        #  | |  \  | |  | | `-' /|  |\    |   |  |   / :(|  '---.' |  .--' .-._)   \ 
+        #  | '--'  /('  '-'(_.-' |  | \   |   |  '--'  / |      |  |  `---.\       / 
+        #  `------'   `-----'    `--'  `--'   `-------'  `------'  `------' `-----'  
+        #  
+        #  go = nvim4.go.neovim;
+        #  react = nvim4.react.neovim;
+      };
 
-        in
-        {
-          packages = {
-            default = self'.packages.base;
-            base = nvim4.full.neovim;
-            # .-. .-')                    .-') _  _ .-') _               ('-.    .-')    
-            # \  ( OO )                  ( OO ) )( (  OO) )            _(  OO)  ( OO ).  
-            #  ;-----.\  ,--. ,--.   ,--./ ,--,'  \     .'_  ,--.     (,------.(_)---\_) 
-            #  | .-.  |  |  | |  |   |   \ |  |\  ,`'--..._) |  |.-')  |  .---'/    _ |  
-            #  | '-' /_) |  | | .-') |    \|  | ) |  |  \  ' |  | OO ) |  |    \  :` `.  
-            #  | .-. `.  |  |_|( OO )|  .     |/  |  |   ' | |  |`-' |(|  '--.  '..`''.) 
-            #  | |  \  | |  | | `-' /|  |\    |   |  |   / :(|  '---.' |  .--' .-._)   \ 
-            #  | '--'  /('  '-'(_.-' |  | \   |   |  '--'  / |      |  |  `---.\       / 
-            #  `------'   `-----'    `--'  `--'   `-------'  `------'  `------' `-----'  
-            #  
-            #  go = nvim4.go.neovim;
-          };
-
-          apps = rec {
-            default = base;
-            base = {
-              type = "app";
-              program = "${self'.packages.default}/bin/nvim";
-            };
-          };
-
-          devShells = { default = import ./shell.nix { inherit pkgs; inherit (self') packages; }; };
+      apps = rec {
+        default = base;
+        base = {
+          type = "app";
+          program = "${self.packages.default}/bin/nvim";
         };
+      };
+
+      devShells = { default = import ./shell.nix { inherit pkgs; inherit (self) packages; }; };
+
+      neovimOptions = lib.evalModules {
+        modules = [
+          { imports = [ ./modules ]; }
+        ];
+        specialArgs = {
+          inherit pkgs;
+        };
+      };
     };
 
   inputs = {
@@ -86,6 +92,12 @@
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # For nixd
+    flake-compat = {
+      url = github:inclyc/flake-compat;
+      flake = false;
     };
 
     #########################
@@ -115,7 +127,7 @@
       url = github:rose-pine/neovim;
       flake = false;
     };
-
+    
     # Neovim LSP everything
     nvim-lspconfig = {
       url = github:neovim/nvim-lspconfig;

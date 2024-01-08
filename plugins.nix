@@ -22,6 +22,4 @@ in
       thePlug = listToAttrs (map (n: nameValuePair n (buildPlug n)) plugins);
     in
     thePlug // miscPlugins;
-
-  # vimPlugins = { starup-nvim = buildPlug "startup-nvim"; };
 }

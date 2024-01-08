@@ -22,6 +22,9 @@ let
       starters = builtins.filter (f: f != null) vim.startPlugins;
     in
     rec {
+      # something to point nixd at :)
+      theOptions = vimOptions;
+
       completedPlugins = let 
           starters = builtins.filter (f: f != null) vim.startPlugins;
           ts = singleton (pkgs.vimPlugins.nvim-treesitter.withPlugins 
@@ -70,7 +73,6 @@ let
         };
       };
     };
-
   fullConfig = vimfig: deepMerge baseCfg vimfig;
 in
 {

@@ -16,7 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.luaConfigRC = ''
+    vim.luaConfigRC = /*lua*/ ''
       vim.cmd.colorscheme("catppuccin")
       vim.g.catppuccin_flavour = "mocha"
       require("catppuccin").setup({
