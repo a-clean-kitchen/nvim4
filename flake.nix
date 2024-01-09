@@ -128,6 +128,17 @@
       flake = false;
     };
     
+    everforest = {
+      url = github:sainnhe/everforest;
+      flake = false;
+    };
+
+    # transparency
+    transparent-nvim = {
+      url = github:xiyaowong/transparent.nvim;
+      flake = false;
+    };
+
     # Neovim LSP everything
     nvim-lspconfig = {
       url = github:neovim/nvim-lspconfig;
@@ -170,12 +181,6 @@
       flake = false;
     };
 
-    # startup screen
-    dashboard-nvim = {
-      url = github:nvimdev/dashboard-nvim;
-      flake = false;
-    };
-
     # Key binding help
     which-key = {
       url = github:folke/which-key.nvim;
@@ -202,7 +207,12 @@
 
     # Statuslines
     lualine = {
-      url = github:hoob3rt/lualine.nvim;
+      url = github:nvim-lualine/lualine.nvim;
+      flake = false;
+    };
+
+    cellular-automaton = {
+      url = github:Eandrju/cellular-automaton.nvim;
       flake = false;
     };
 

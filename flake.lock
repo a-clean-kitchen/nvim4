@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "cellular-automaton": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693589931,
+        "narHash": "sha256-szbd6m7hH7NFI0UzjWF83xkpSJeUWCbn9c+O8F8S/Fg=",
+        "owner": "Eandrju",
+        "repo": "cellular-automaton.nvim",
+        "rev": "b7d056dab963b5d3f2c560d92937cb51db61cb5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Eandrju",
+        "repo": "cellular-automaton.nvim",
+        "type": "github"
+      }
+    },
     "cmp-buffer": {
       "flake": false,
       "locked": {
@@ -96,19 +112,19 @@
         "type": "github"
       }
     },
-    "dashboard-nvim": {
+    "everforest": {
       "flake": false,
       "locked": {
-        "lastModified": 1699578883,
-        "narHash": "sha256-LNjYIRL5xZyLgFkoTu3K5USOfk1mtaXe5RhKBAbzYRw=",
-        "owner": "nvimdev",
-        "repo": "dashboard-nvim",
-        "rev": "63df28409d940f9cac0a925df09d3dc369db9841",
+        "lastModified": 1698166503,
+        "narHash": "sha256-+ST4x0MKg6tz8nSmRGRGQQ4DnBD7tCho1zX74CZuOSo=",
+        "owner": "sainnhe",
+        "repo": "everforest",
+        "rev": "72f101bd63228a1a45012325e39c5280ec22c828",
         "type": "github"
       },
       "original": {
-        "owner": "nvimdev",
-        "repo": "dashboard-nvim",
+        "owner": "sainnhe",
+        "repo": "everforest",
         "type": "github"
       }
     },
@@ -299,13 +315,13 @@
       "locked": {
         "lastModified": 1703568994,
         "narHash": "sha256-do28EEtiu14NAroVblx8FJLCk8CVNmpm8RaTbcDHtvk=",
-        "owner": "hoob3rt",
+        "owner": "nvim-lualine",
         "repo": "lualine.nvim",
         "rev": "566b7036f717f3d676362742630518a47f132fff",
         "type": "github"
       },
       "original": {
-        "owner": "hoob3rt",
+        "owner": "nvim-lualine",
         "repo": "lualine.nvim",
         "type": "github"
       }
@@ -560,12 +576,13 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
+        "cellular-automaton": "cellular-automaton",
         "cmp-buffer": "cmp-buffer",
         "cmp-nvim-lsp": "cmp-nvim-lsp",
         "cmp-path": "cmp-path",
         "cmp-treesitter": "cmp-treesitter",
         "cmp-vsnip": "cmp-vsnip",
-        "dashboard-nvim": "dashboard-nvim",
+        "everforest": "everforest",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "gitsigns-nvim": "gitsigns-nvim",
@@ -583,6 +600,7 @@
         "plenary-nvim": "plenary-nvim",
         "rosepine": "rosepine",
         "startup-nvim": "startup-nvim",
+        "transparent-nvim": "transparent-nvim",
         "which-key": "which-key"
       }
     },
@@ -630,6 +648,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "transparent-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699805216,
+        "narHash": "sha256-wT+7rmp08r0XYGp+MhjJX8dsFTar8+nf10CV9OdkOSk=",
+        "owner": "xiyaowong",
+        "repo": "transparent.nvim",
+        "rev": "fd35a46f4b7c1b244249266bdcb2da3814f01724",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xiyaowong",
+        "repo": "transparent.nvim",
         "type": "github"
       }
     },

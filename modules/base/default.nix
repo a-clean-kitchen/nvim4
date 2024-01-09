@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./theme.nix
     ./baseVim.nix
     ./package.nix
     ./lspInit.nix
