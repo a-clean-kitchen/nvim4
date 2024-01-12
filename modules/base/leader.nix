@@ -14,8 +14,8 @@ in {
 
   config = {
     vim.startLuaConfigRC = ''
-      vim.g.mapleader = '${cfg.leader}'
-      vim.g.maplocalleader = '${cfg.leader}'
+      vim.g.mapleader = "${cfg.leader}"
+      vim.g.maplocalleader = "${cfg.leader}"
     '';
   };
 }

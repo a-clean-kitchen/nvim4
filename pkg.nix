@@ -38,6 +38,8 @@ let
         text = ''
           ${vim.startLuaConfigRC}
           ${vim.luaConfigRC}
+
+          ${vim.finalKeybindings}
         '';
       };
 
@@ -45,8 +47,6 @@ let
         name = "init.vim";
         text = ''
           ${vim.finalConfigRC}
-
-          ${vim.finalKeybindings}
         '';
       };
 
@@ -57,14 +57,12 @@ let
         lua << EOF
         ${luaRC.text}
         EOF
-
-        ${vim.finalKeybindings}
       '';
 
       neovim = pkgs.wrapNeovim vim.neovim.package {
         inherit (vim) viAlias vimAlias;
         configure = {
-          customRC = finalConfigRC;
+          customRC = builtins.trace finalConfigRC finalConfigRC;
 
           packages.myVimPackage = {
             start = completedPlugins;
@@ -73,6 +71,7 @@ let
         };
       };
     };
+
   fullConfig = vimfig: deepMerge baseCfg vimfig;
 in
 {

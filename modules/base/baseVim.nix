@@ -1,15 +1,16 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 with builtins;
-
+# TODO: /\ turn these into inherit pattern
 let
   cfg = config.vim;
 
   mkMappingOption = it:
     mkOption ({
       default = { };
-      type = with types; attrsOf (nullOr str);
+      type = with types; attrsOf (nullOr (attrsOf (str)));
     } // it);
 in
 {
@@ -34,13 +35,6 @@ in
 
     finalConfigRC = mkOption {
       description = "built vimrc contents";
-      type = types.lines;
-      internal = true;
-      default = "";
-    };
-
-    finalKeybindings = mkOption {
-      description = "built Keybindings in vimrc contents";
       type = types.lines;
       internal = true;
       default = "";
@@ -86,6 +80,13 @@ in
       default = { };
       description = "Set containing global variable values";
       type = types.attrs;
+    };
+
+    finalKeybindings = mkOption {
+      description = "built Keybindings in vimrc contents";
+      type = types.lines;
+      internal = true;
+      default = "";
     };
 
     nnoremap =
@@ -202,18 +203,14 @@ in
       globalsScript =
         mapAttrsFlatten (name: value: "let g:${name}=${toJSON value}")
           (filterNonNull cfg.globals);
-
-      matchCtrl = match "Ctrl-(.)(.*)";
-      mapKeyBinding = it:
-        let
-          groups = matchCtrl it;
-        in
-        if groups == null
-        then it
-        else "<C-${toUpper (head groups)}>${head (tail groups)}";
-      mapVimBinding = prefix: mappings:
-        mapAttrsFlatten (name: value: "${prefix} ${mapKeyBinding name} ${value}")
-          (filterNonNull mappings);
+      
+      mapVimBinding = prefix: keymapAttrs: forEach (mapAttrsToList (name: value: { inherit name; } // value) keymapAttrs) (value: ''
+        vim.keymap.set("${substring 0 1 prefix}", "${value.name}", "${value.mapping}", {
+          noremap = ${trueToString (hasSuffix "noremap" prefix)},
+          ${if (substring 0 1 prefix) == "n" then "desc = \"${value.description}\"," else ""}
+          ${if hasAttr "append" value then value.append else ""}
+        })  
+      '');
 
       nmap = mapVimBinding "nmap" config.vim.nmap;
       imap = mapVimBinding "imap" config.vim.imap;
@@ -241,12 +238,11 @@ in
         " Global scripts
         ${concatStringsSep "\n" globalsScript}
 
-        " Config RC
+         " Config RC
         ${cfg.configRC}
       '';
 
       vim.finalKeybindings = ''
-        " Keybindings
         ${builtins.concatStringsSep "\n" nmap}
         ${builtins.concatStringsSep "\n" imap}
         ${builtins.concatStringsSep "\n" vmap}
@@ -264,5 +260,6 @@ in
         ${builtins.concatStringsSep "\n" onoremap}
         ${builtins.concatStringsSep "\n" tnoremap}
       '';
+
     };
 }

@@ -158,27 +158,27 @@ in
     vim.nmap =
       if cfg.disableArrows
       then {
-        "<up>" = "<nop>";
-        "<down>" = "<nop>";
-        "<left>" = "<nop>";
-        "<right>" = "<nop>";
+        "<up>" = { mapping = "<nop>"; description = "Just clearing up"; };
+        "<down>" = { mapping = "<nop>"; description = "Just clearing down"; };
+        "<left>" = { mapping = "<nop>"; description = "Just clearing left"; };
+        "<right>" = { mapping = "<nop>"; description = "Just clearing right"; }; 
       }
       else { };
 
     vim.imap =
       if cfg.disableArrows
       then {
-        "<up>" = "<nop>";
-        "<down>" = "<nop>";
-        "<left>" = "<nop>";
-        "<right>" = "<nop>";
+        "<up>" = { mapping = "<nop>"; description = "Just clearing up"; };
+        "<down>" = { mapping = "<nop>"; description = "Just clearing down"; };
+        "<left>" = { mapping = "<nop>"; description = "Just clearing left"; };
+        "<right>" = { mapping = "<nop>"; description = "Just clearing right"; };
       }
       else { };
 
     vim.nnoremap =
       let
-        mls = if cfg.mapLeaderSpace then { "<space>" = "<nop>"; } else { };
-        mch = if cfg.mapClearHighlight then { "<C-z>" = ":nohlsearch<CR>"; } else { };
+        mls = if cfg.mapLeaderSpace then { "<space>" = { mapping = "<nop>"; description = "Just clearing space"; }; } else { };
+        mch = if cfg.mapClearHighlight then { "<C-z>" = { mapping = ":nohlsearch<CR>"; description = "Clear Highlight Search"; }; } else { };
       in
       mls // mch;
 

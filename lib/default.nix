@@ -1,7 +1,8 @@
 { inputs ? { }, lib, pkgs, ... }:
 
 let
-  inherit (lib) forEach filterAttrs recursiveUpdate setAttrByPath;
+  inherit (lib) forEach filterAttrs recursiveUpdate setAttrByPath mapAttrsRecursive;
+  inherit (builtins) attrNames elem trace;
 in
 {
   deepMerge = recursiveUpdate;
@@ -12,9 +13,13 @@ in
 
   pluginFilter = whole: filter:
     let
-      f = xs: filterAttrs (k: v: !builtins.elem k xs);
+      f = xs: filterAttrs (k: v: !elem k xs);
     in
-    builtins.attrNames (f filter whole);
+    attrNames (f filter whole);
 
   writeIf = cond: msg: if cond then msg else "";
+
+  trueToString = cond: if cond then "true" else "false";
+
+  attrTrace = attr: mapAttrsRecursive (path: value: (trace "path ${path} has value ${value}" value )) attr;
 }

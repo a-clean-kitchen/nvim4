@@ -9,9 +9,6 @@ in
 
   config = {
     vim.luaConfigRC = /*lua*/ ''
-      -- Enable lspconfig
-      local lspconfig = require('lspconfig')
-
       -- Nix config
           lspconfig.nixd.setup{
             capabilities = capabilities;

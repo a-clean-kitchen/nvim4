@@ -3,8 +3,13 @@
 {
   imports = [
     ./base
-    ./theme
+    ./keys
+    ./themes
     ./lsp.nix
-    ./startup.nix
+    ./noice.nix
+    ./neo-tree.nix
+    ./true-zen.nix
+    ./lualine.nix
+    ./telescope.nix
   ];
 }

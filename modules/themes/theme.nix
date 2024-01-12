@@ -38,7 +38,7 @@ in
 
     transparency = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = "Enable Transparent Background";
     };
 
@@ -72,8 +72,15 @@ in
       ''}
     '';
 
-    vim.luaConfigRc = /*lua*/ ''
+    vim.luaConfigRC = ''
       vim.cmd.colorscheme("${cfg.name}")
     '';
+
+    vim.nmap = {
+      "<leader>tt" = {
+        mapping = "<cmd>TransparentToggle<CR>";
+        description = "Toggle Transparency";
+      };
+    };
   });
 }

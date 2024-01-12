@@ -112,8 +112,25 @@
     #############################
 
     # startup screen
-    startup-nvim = {
-      url = github:startup-nvim/startup.nvim;
+    dashboard-nvim = {
+      url = github:nvimdev/dashboard-nvim;
+      flake = false;
+    };
+    
+    # ui
+    noice-nvim = {
+      url = github:folke/noice.nvim;
+      flake = false;
+    };
+
+    telescope = {
+      url = github:nvim-telescope/telescope.nvim;
+      flake = false;
+    };
+
+    # file tree
+    neo-tree = {
+      url = github:nvim-neo-tree/neo-tree.nvim;
       flake = false;
     };
 
@@ -129,7 +146,13 @@
     };
     
     everforest = {
-      url = github:sainnhe/everforest;
+      url = github:neanias/everforest-nvim;
+      flake = false;
+    };
+
+    # focus
+    true-zen = {
+      url = github:Pocco81/true-zen.nvim;
       flake = false;
     };
 
@@ -150,67 +173,62 @@
       flake = false;
     };
 
-    # Autocompletes
-    nvim-cmp = {
-      url = github:hrsh7th/nvim-cmp;
-      flake = false;
-    };
+#     # Autocompletes
+#     nvim-cmp = {
+#       url = github:hrsh7th/nvim-cmp;
+#       flake = false;
+#     };
+# 
+#     cmp-buffer = {
+#       url = github:hrsh7th/cmp-buffer;
+#       flake = false;
+#     };
+# 
+#     cmp-nvim-lsp = {
+#       url = github:hrsh7th/cmp-nvim-lsp;
+#       flake = false;
+#     };
+# 
+#     cmp-vsnip = {
+#       url = github:hrsh7th/cmp-vsnip;
+#       flake = false;
+#     };
+# 
+#     cmp-path = {
+#       url = github:hrsh7th/cmp-path;
+#       flake = false;
+#     };
+# 
+#     cmp-treesitter = {
+#       url = github:ray-x/cmp-treesitter;
+#       flake = false;
+#     };
 
-    cmp-buffer = {
-      url = github:hrsh7th/cmp-buffer;
-      flake = false;
-    };
-
-    cmp-nvim-lsp = {
-      url = github:hrsh7th/cmp-nvim-lsp;
-      flake = false;
-    };
-
-    cmp-vsnip = {
-      url = github:hrsh7th/cmp-vsnip;
-      flake = false;
-    };
-
-    cmp-path = {
-      url = github:hrsh7th/cmp-path;
-      flake = false;
-    };
-
-    cmp-treesitter = {
-      url = github:ray-x/cmp-treesitter;
-      flake = false;
-    };
-
-    # Key binding help
+    # key binding help
     which-key = {
       url = github:folke/which-key.nvim;
       flake = false;
     };
 
-    # Markdown
+    # markdown
     glow-nvim = {
       url = github:ellisonleao/glow.nvim;
       flake = false;
     };
 
-    # Filetrees
-    nvim-tree-lua = {
-      url = github:kyazdani42/nvim-tree.lua;
-      flake = false;
-    };
-
-    # Tablines
+    # tablines
     nvim-bufferline = {
       url = github:akinsho/bufferline.nvim;
       flake = false;
     };
 
-    # Statuslines
+    # statuslines
     lualine = {
       url = github:nvim-lualine/lualine.nvim;
       flake = false;
     };
-
+    
+    # misc
     cellular-automaton = {
       url = github:Eandrju/cellular-automaton.nvim;
       flake = false;
@@ -226,10 +244,29 @@
       url = github:nvim-tree/nvim-web-devicons;
       flake = false;
     };
-
-    gitsigns-nvim = {
-      url = github:lewis6991/gitsigns.nvim;
+    
+    nui = {
+      url = github:MunifTanjim/nui.nvim;
       flake = false;
     };
+
+    nvim-notify = {
+      url = github:rcarriga/nvim-notify;
+      flake = false;
+    };
+
+    third-image = {
+      url = github:3rd/image.nvim;
+      flake = false;
+    };
+
+    twilight = {
+      url = github:folke/twilight.nvim;
+      flake = false;
+    };
+#     gitsigns-nvim = {
+#       url = github:lewis6991/gitsigns.nvim;
+#       flake = false;
+#     };
   };
 }
