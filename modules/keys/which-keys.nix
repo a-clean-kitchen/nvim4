@@ -1,12 +1,19 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-with builtins;
-
 let
   cfg = config.vim.which-key;
+
+  inherit (lib) mkOption types mkIf;
 in {
-  config = {
+  options.vim.which-key.enable = mkOption {
+    type = types.bool;
+    default = true;
+    description = ''
+      Enable which-key
+    '';
+  };
+
+  config = mkIf cfg.enable {
     vim = {
       startPlugins = with pkgs.myVimPlugins; [
         which-key

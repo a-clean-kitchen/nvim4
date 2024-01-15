@@ -1,15 +1,13 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-with builtins;
-
 let
   cfg = config.vim.theme;
   
+  inherit (lib) mkOption types mkIf;  
+  inherit (lib.my) withPlugins writeIf;
+
   enumb = name: flavors: other:
     if (cfg.name == name) then types.enum flavors else other;
-
-  inherit (lib.my) withPlugins writeIf;
 in
 {
   options.vim.theme = {

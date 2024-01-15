@@ -28,7 +28,7 @@ in {
         mapping = ":Neotree filesystem reveal float<CR>";
         description = "Open filesystem";
       };
-      "<leader>bf" = {
+      "<leader>lb" = {
         mapping = ":Neotree buffers reveal float<CR>";
         description = "Open buffers";
       };

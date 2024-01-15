@@ -10,31 +10,28 @@
       nmap = {
         # buffer management
         "<leader>bk" = {
-          mapping = ":bd<CR>";
+          mapping = "<cmd>bd<CR>";
           description = "Close buffer";
         };
-        "<leader>hc" = {
-          mapping = ":noh<CR>";
-          description = "Clear hlsearch";
-          append = ''
-            silent = true,
-          '';
-        };
-        "<Leader>bp" = {
+        "<leader>bp" = {
           mapping = "<cmd>bprevious<CR>";
           description = "Previous Buffer";
         };
-        "<Leader>bn" = {
+        "<leader>bn" = {
           mapping = "<cmd>bnext<CR>";
           description = "Next Buffer";
         };
-        "<Leader>bf" = {
+        "<leader>bf" = {
           mapping = "<cmd>bfirst<CR>";
           description = "First Buffer";
         };
-        "<Leader>bl" = {
+        "<leader>bl" = {
           mapping = "<cmd>blast<CR>";
           description = "Last Buffer";
+        };
+        "<leader>bw" = {
+          mapping = "<cmd>w<CR>";
+          description = "Write buffer";
         };
 
         # window management
@@ -97,6 +94,15 @@
         "<C-Right>" = {
           mapping = "<cmd>vertical resize +2<cr>";
           description = "Increase window width";
+        };
+
+        # misc
+        "<leader>hc" = {
+          mapping = "<cmd>noh<CR>";
+          description = "Clear hlsearch";
+          append = ''
+            silent = true,
+          '';
         };
       };
 

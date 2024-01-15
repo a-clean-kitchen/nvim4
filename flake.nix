@@ -70,7 +70,7 @@
         };
       };
 
-      devShells = { default = import ./shell.nix { inherit pkgs; inherit (self) packages; }; };
+      devShells."${system}" = { default = import ./shell.nix { inherit pkgs; inherit (self) packages; }; };
 
       neovimOptions = lib.evalModules {
         modules = [
@@ -127,7 +127,11 @@
       url = github:nvim-telescope/telescope.nvim;
       flake = false;
     };
-
+    
+    nvim-code-action-menu = {
+      url = github:weilbith/nvim-code-action-menu;
+      flake = false;
+    };
     # file tree
     neo-tree = {
       url = github:nvim-neo-tree/neo-tree.nvim;

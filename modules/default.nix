@@ -5,7 +5,7 @@
     ./base
     ./keys
     ./themes
-    ./lsp.nix
+    ./lsp
     ./noice.nix
     ./neo-tree.nix
     ./true-zen.nix

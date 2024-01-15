@@ -1,4 +1,4 @@
-{ pkgs, lib, baseCfg, ... }:
+{ pkgs, lib, baseCfg, conf ? {}, ... }:
 
 let
   inherit (lib.my) deepMerge treesitterGrammars;
@@ -59,7 +59,7 @@ let
         EOF
       '';
 
-      neovim = pkgs.wrapNeovim vim.neovim.package {
+      neovim = pkgs.wrapNeovim vim.package {
         inherit (vim) viAlias vimAlias;
         configure = {
           customRC = builtins.trace finalConfigRC finalConfigRC;
@@ -76,6 +76,6 @@ let
 in
 {
   full = vimfigBuilder {
-    config = fullConfig { };
+    config = fullConfig conf;
   };
 }

@@ -1,12 +1,10 @@
 { pkgs, lib, config, ... }:
 
-with lib;
-with builtins;
-
 let
   cfg = config.vim;
-  inherit (lib) mkOption mkDefault;
-  inherit (lib.my) writeIf;
+
+  inherit (lib) mkOption mkDefault types;
+  inherit (lib.my) writeIf trueToString;
 in
 {
   options.vim = {
@@ -38,16 +36,6 @@ in
     syntaxHighlighting = mkOption {
       type = types.bool;
       description = "Enable syntax highlighting";
-    };
-
-    mapClearHighlight = mkOption {
-      type = types.bool;
-      description = "Map the `C-z` key to clear highlight search";
-    };
-
-    mapLeaderSpace = mkOption {
-      type = types.bool;
-      description = "Map the space key to leader key";
     };
 
     useSystemClipboard = mkOption {
@@ -131,17 +119,15 @@ in
 
   config = {
     vim.colourTerm = mkDefault true;
-    vim.disableArrows = false;
+    vim.disableArrows = mkDefault false;
     vim.hideSearchHighlight = mkDefault false;
     vim.scrollOffset = mkDefault 8;
-    vim.wordWrap = mkDefault true;
+    vim.wordWrap = mkDefault false;
     vim.syntaxHighlighting = mkDefault true;
-    vim.mapClearHighlight = mkDefault true;
-    vim.mapLeaderSpace = mkDefault true;
     vim.useSystemClipboard = mkDefault true;
-    vim.mouseSupport = mkDefault "v";
+    vim.mouseSupport = mkDefault "a";
     vim.lineNumberMode = mkDefault "relNumber";
-    vim.preventJunkFiles = mkDefault false;
+    vim.preventJunkFiles = mkDefault true;
     vim.tabWidth = mkDefault 2;
     vim.autoIndent = mkDefault true;
     vim.cmdHeight = mkDefault 1;
@@ -153,7 +139,9 @@ in
     vim.splitRight = mkDefault true;
     vim.spellCheck.markdown = mkDefault true;
 
-    vim.startPlugins = [ pkgs.myVimPlugins.plenary-nvim ] ++ cfg.customPlugins;
+    vim.startPlugins = with pkgs.myVimPlugins; [ 
+      plenary-nvim
+    ] ++ cfg.customPlugins;
 
     vim.nmap =
       if cfg.disableArrows
@@ -175,83 +163,49 @@ in
       }
       else { };
 
-    vim.nnoremap =
-      let
-        mls = if cfg.mapLeaderSpace then { "<space>" = { mapping = "<nop>"; description = "Just clearing space"; }; } else { };
-        mch = if cfg.mapClearHighlight then { "<C-z>" = { mapping = ":nohlsearch<CR>"; description = "Clear Highlight Search"; }; } else { };
-      in
-      mls // mch;
+    vim.startLuaConfigRC =  /*lua*/ ''
+      local options = {
+        encoding = "utf-8",
+        mouse = "${cfg.mouseSupport}",
+        tabstop = ${toString cfg.tabWidth},
+        shiftwidth = ${toString cfg.tabWidth},
+        softtabstop = ${toString cfg.tabWidth},
+        expandtab = true,
+        cmdheight = ${toString cfg.cmdHeight},
+        updatetime = ${toString cfg.updateTime},
+        tm = ${toString cfg.mapTimeout},
+        hidden = true,
+        splitbelow = ${trueToString cfg.splitBelow},
+        splitright = ${trueToString cfg.splitRight},
+        ${writeIf cfg.showSignColumn "signcolumn = \"yes\","}
+        autoindent = ${trueToString cfg.autoIndent},
+        swapfile = ${trueToString (!cfg.preventJunkFiles)},
+        backup = ${trueToString (!cfg.preventJunkFiles)},
+        writebackup = ${trueToString (!cfg.preventJunkFiles)},
+        visualbell = ${trueToString (!(cfg.bell == "none") || !(cfg.bell == "visual"))},
+        errorbells = ${trueToString (!(cfg.bell == "none") || !(cfg.bell == "on"))},
+        relativenumber = ${trueToString (cfg.lineNumberMode == "relative" || cfg.lineNumberMode == "relNumber")},
+        number = ${trueToString (cfg.lineNumberMode == "number" || cfg.lineNumberMode == "relNumber")},
+        wrap = ${trueToString cfg.wordWrap},
+        termguicolors = ${trueToString cfg.colourTerm},
+        hlsearch = ${trueToString (!cfg.hideSearchHighlight)},
+        incsearch = ${trueToString cfg.hideSearchHighlight},
 
-    vim.startConfigRC = ''
-      " Settings that are set for everything
-      set encoding=utf-8
-      set mouse=${cfg.mouseSupport}
-      set tabstop=${toString cfg.tabWidth}
-      set shiftwidth=${toString cfg.tabWidth}
-      set softtabstop=${toString cfg.tabWidth}
-      set expandtab
-      set cmdheight=${toString cfg.cmdHeight}
-      set updatetime=${toString cfg.updateTime}
-      set shortmess+=c
-      set tm=${toString cfg.mapTimeout}
-      set hidden
-      ${writeIf cfg.splitBelow ''
-        set splitbelow
-      ''}
-      ${writeIf cfg.splitRight ''
-        set splitright
-      ''}
-      ${writeIf cfg.showSignColumn ''
-        set signcolumn=yes
-      ''}
-      ${writeIf cfg.autoIndent ''
-        set autoindent
-      ''}
+      }
+      for k, v in pairs(options) do
+        vim.opt[k] = v
+      end
 
-      ${writeIf cfg.preventJunkFiles ''
-        set noswapfile
-        set nobackup
-        set nowritebackup
-      ''}
-      ${writeIf (cfg.bell == "none") ''
-        set noerrorbells
-        set novisualbell
-      ''}
-      ${writeIf (cfg.bell == "on") ''
-        set novisualbell
-      ''}
-      ${writeIf (cfg.bell == "visual") ''
-        set noerrorbells
-      ''}
-      ${writeIf (cfg.lineNumberMode == "relative") ''
-        set relativenumber
-      ''}
-      ${writeIf (cfg.lineNumberMode == "number") ''
-        set number
-      ''}
-      ${writeIf (cfg.lineNumberMode == "relNumber") ''
-        set number relativenumber
-      ''}
       ${writeIf cfg.useSystemClipboard ''
-        set clipboard+=unnamedplus
+        vim.opt.clipboard:append("unnamedplus")
       ''}
+
       ${writeIf cfg.syntaxHighlighting ''
-        syntax on
+        vim.cmd("syntax on")
       ''}
-      ${writeIf (!cfg.wordWrap) ''
-        set nowrap
-      ''}
-      ${writeIf cfg.hideSearchHighlight ''
-        set nohlsearch
-        set incsearch
-      ''}
-      ${writeIf cfg.colourTerm ''
-        set termguicolors
-        set t_Co=256
-      ''}
+
       ${writeIf cfg.spellCheck.markdown ''
-        " Spell check for markdown files
-        au BufNewFile,BufRead *.md set spell
+        vim.cmd("au BufNewFile,BufRead *.md set spell")
       ''}
     '';
   };
