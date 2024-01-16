@@ -5,17 +5,10 @@ let
   
   inherit (lib) 
     mkOption types filterAttrs mapAttrsFlatten 
-    mapAttrsToList filterNonNull hasSuffix hasAttr
-    forEach;
+    filterNonNull; 
 
-  inherit (lib.my) trueToString;
-  inherit (builtins) concatStringsSep substring toJSON;
-
-  mkMappingOption = it:
-    mkOption ({
-      default = { };
-      type = with types; attrsOf (nullOr (attrsOf (str)));
-    } // it);
+  inherit (lib.my) vimBindingPre mkMappingOption;
+  inherit (builtins) concatStringsSep toJSON;
 in
 {
   options.vim = {
@@ -151,14 +144,7 @@ in
       globalsScript =
         mapAttrsFlatten (name: value: "let g:${name}=${toJSON value}")
           (filterNonNull cfg.globals);
-      
-      mapVimBinding = prefix: keymapAttrs: forEach (mapAttrsToList (name: value: { inherit name; } // value) keymapAttrs) (value: ''
-        vim.keymap.set("${substring 0 1 prefix}", "${value.name}", "${value.mapping}", {
-          noremap = ${trueToString (hasSuffix "noremap" prefix)},
-          ${if (substring 0 1 prefix) == "n" then "desc = \"${value.description}\"," else ""}
-          ${if hasAttr "append" value then value.append else ""}
-        })  
-      '');
+      mapVimBinding = vimBindingPre {};      
 
       nmap = mapVimBinding "nmap" config.vim.nmap;
       imap = mapVimBinding "imap" config.vim.imap;

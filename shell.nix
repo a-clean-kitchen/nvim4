@@ -11,7 +11,7 @@ mkShell {
   buildInputs = [
     git
     nixpkgs-fmt
-    packages."x86_64-linux".default
+    # packages."x86_64-linux".default
   ];
   shellHook = ''
     export FLAKE="$(pwd)"
