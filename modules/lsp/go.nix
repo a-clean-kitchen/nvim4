@@ -8,7 +8,7 @@ in {
       lspconfigSetup = /*lua*/ ''
         -- Go config
         lspconfig.gopls.setup {
-          cmd = { "${pkgs.go}/bin/gopls" };
+          cmd = { "${pkgs.gopls}/bin/gopls" };
           settings = {
             gopls = {
               analyses = {
