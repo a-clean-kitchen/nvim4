@@ -9,9 +9,6 @@ in
 {
   imports = [
     ./capabilities.nix
-    ./nix.nix
-    # ./ts.nix
-    ./go.nix
   ];
 
   options.vim.lsp = {
@@ -60,9 +57,12 @@ in
       -- Enable lspconfig
       local lspconfig = require('lspconfig')
 
-      function testForLSPBinaryOnPath(name)
-        local output = vim.fn.system({ 'which', name })
-        return vim.v.shell_error == 0
+      local testForLSPBinaryOnPath = function(name, alternate)
+        local path = vim.fn.exepath(name)
+        if path == "" then
+          return alternate
+        end
+        return path
       end
 
       ${cfg.capabilities.luaConfig}

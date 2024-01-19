@@ -8,20 +8,17 @@ in
 {
   options.vim.lsp.nvimCodeActionMenu.enable = mkOption {
     type = types.bool;
-    default = false;
-    description = "Enable nvim-code-action-menu plugin";
+    default = true;
+    description = "Enable actions-preview plugin";
   };
 
   config = mkIf (cfg.enable && cfg.nvimCodeActionMenu.enable) {
     vim.startPlugins = with pkgs.neovimPlugins; [
-      nvim-code-action-menu
+      actions-preview-nvim
     ];
 
-    vim.nnoremap = {
-      "<silent><leader>ac" = {
-        mapping =":CodeActionMenu<CR>";
-        description = "Show nvim-code-action-menu";
-      };
-    };
+    vim.luaConfigRC = ''
+      vim.keymap.set({ "v", "n" }, "<leader>ca", require("actions-preview").code_actions)
+    '';
   };
 }

@@ -128,10 +128,16 @@
       flake = false;
     };
     
-    nvim-code-action-menu = {
-      url = github:weilbith/nvim-code-action-menu;
+    actions-preview-nvim = {
+      url = github:aznhe21/actions-preview.nvim;
       flake = false;
     };
+
+    lsp-kind = {
+      url = github:onsails/lspkind-nvim;
+      flake = false;
+    };
+
     # file tree
     neo-tree = {
       url = github:nvim-neo-tree/neo-tree.nvim;

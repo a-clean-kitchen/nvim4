@@ -6,14 +6,14 @@ in {
 
   config = {
     vim.lsp = {
-      lspconfigSetup = ''
+      lspconfigSetup = /*lua*/ ''
         -- Nix config
         lspconfig.nixd.setup{
           capabilities = capabilities;
           on_attach = function(client, bufnr)
             attach_keymaps(client, bufnr)
           end,
-          cmd = {"${pkgs.nixd}/bin/nixd"}
+          cmd = { testForLSPBinaryOnPath("nixd", "${pkgs.nixd}/bin/nixd") }
         }
       '';
 

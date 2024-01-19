@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "actions-preview-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704627848,
+        "narHash": "sha256-iXqs1+3z6ujm/6thDpbgoyWmUJ5Nd+D0zxAW4jc+T2c=",
+        "owner": "aznhe21",
+        "repo": "actions-preview.nvim",
+        "rev": "dd63df1a4ed0ffe1458945ee50ecb1dd02b605ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aznhe21",
+        "repo": "actions-preview.nvim",
+        "type": "github"
+      }
+    },
     "catppuccin": {
       "flake": false,
       "locked": {
@@ -310,6 +326,22 @@
         "type": "github"
       }
     },
+    "lsp-kind": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704982040,
+        "narHash": "sha256-/QLdBU/Zwmkw1NGuLBD48tvrmIP9d9WHhgcLEQgRTWo=",
+        "owner": "onsails",
+        "repo": "lspkind-nvim",
+        "rev": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "onsails",
+        "repo": "lspkind-nvim",
+        "type": "github"
+      }
+    },
     "lualine": {
       "flake": false,
       "locked": {
@@ -541,22 +573,6 @@
         "type": "github"
       }
     },
-    "nvim-code-action-menu": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1702287297,
-        "narHash": "sha256-pY+aP9iBuJhvDZzVEsOHZmnfaq3vUP7TfKEEQrj+Mo8=",
-        "owner": "weilbith",
-        "repo": "nvim-code-action-menu",
-        "rev": "8c7672a4b04d3cc4edd2c484d05b660a9cb34a1b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "weilbith",
-        "repo": "nvim-code-action-menu",
-        "type": "github"
-      }
-    },
     "nvim-lspconfig": {
       "flake": false,
       "locked": {
@@ -639,6 +655,7 @@
     },
     "root": {
       "inputs": {
+        "actions-preview-nvim": "actions-preview-nvim",
         "catppuccin": "catppuccin",
         "cellular-automaton": "cellular-automaton",
         "cmp-buffer": "cmp-buffer",
@@ -651,6 +668,7 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "glow-nvim": "glow-nvim",
+        "lsp-kind": "lsp-kind",
         "lualine": "lualine",
         "neo-tree": "neo-tree",
         "neovim": "neovim",
@@ -660,7 +678,6 @@
         "nui": "nui",
         "nvim-bufferline": "nvim-bufferline",
         "nvim-cmp": "nvim-cmp",
-        "nvim-code-action-menu": "nvim-code-action-menu",
         "nvim-lspconfig": "nvim-lspconfig",
         "nvim-notify": "nvim-notify",
         "nvim-treesitter": "nvim-treesitter",
