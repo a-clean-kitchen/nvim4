@@ -22,6 +22,10 @@ in
           indent = {
             enable = true,
           },
+
+          incremental_selection = {
+            enable = true,
+          },
         }
     '';
     vim.tsGrammars = [ "nix" ];

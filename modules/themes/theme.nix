@@ -50,7 +50,7 @@ in
       (withPlugins (cfg.transparency) [ transparent-nvim ])
     );
     
-    vim.startLuaConfigRC = ''
+    vim.startLuaConfigRC = /*lua*/ ''
       ${writeIf (cfg.name == "catppuccin") ''
         require("catppuccin").setup({
           flavour = "${cfg.style}",

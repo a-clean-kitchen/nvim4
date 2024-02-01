@@ -199,13 +199,18 @@
       flake = false;
     };
 
-    cmp-vsnip = {
-      url = github:hrsh7th/cmp-vsnip;
+    vim-vsnip = {
+      url = github:hrsh7th/vim-vsnip;
       flake = false;
     };
 
     cmp-path = {
       url = github:hrsh7th/cmp-path;
+      flake = false;
+    };
+
+    cmp-cmdline = {
+      url = github:hrsh7th/cmp-cmdline;
       flake = false;
     };
 

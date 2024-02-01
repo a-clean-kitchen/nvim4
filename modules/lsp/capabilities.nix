@@ -106,7 +106,7 @@ in
         trueToString cfg.formatOnSave
       }
       -- Enable formatting
-      format_callback = function(client, bufnr)
+      --[[ format_callback = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
           group = augroup,
           buffer = bufnr,
@@ -117,21 +117,14 @@ in
             end
           end
         })
-      end
+      end ]]--
 
       default_on_attach = function(client, bufnr)
         attach_keymaps(client, bufnr)
-        format_callback(client, bufnr)
+        -- format_callback(client, bufnr)
       end
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-      local default_setup = function(server)
-        lspconfig[server].setup({
-          capabilities = lsp_capabilities,
-        })
-      end
-
       ${let
         cfg = config.vim.autocomplete;
       in

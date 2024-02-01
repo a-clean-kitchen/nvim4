@@ -13,7 +13,7 @@ in
   };
 
   config = mkIf (cfg.enable && cfg.nvimCodeActionMenu.enable) {
-    vim.startPlugins = with pkgs.neovimPlugins; [
+    vim.startPlugins = with pkgs.myVimPlugins; [
       actions-preview-nvim
     ];
 
