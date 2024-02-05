@@ -4,7 +4,7 @@ let
   inherit (lib) 
     forEach filterAttrs recursiveUpdate setAttrByPath 
     mapAttrsRecursive mapAttrsToList hasAttr hasSuffix
-    mkOption types;
+    mkOption types concatMapStringsSep splitString;
   inherit (builtins) attrNames elem trace substring;
 in rec {
   deepMerge = recursiveUpdate;
@@ -39,4 +39,6 @@ in rec {
       default = { };
       type = with types; attrsOf (nullOr (attrsOf (str)));
     } // it);
+  
+  indent = prefix: str: concatMapStringsSep "\n" (line: prefix + line) (splitString "\n" str);
 }

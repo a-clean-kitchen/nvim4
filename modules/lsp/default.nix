@@ -55,7 +55,11 @@ in
       ${cfg.bufKeymapsSetup}
 
       -- Enable lspconfig
-      local lspconfig = require('lspconfig')
+      local status, lspconfig = pcall(require, "lspconfig")
+      if (not status) then return end
+      
+      local status, util = pcall(require, "lspconfig.util")
+      if (not status) then return end
 
       local testForLSPBinaryOnPath = function(name, alternate)
         local path = vim.fn.exepath(name)

@@ -1,15 +1,8 @@
 {
   "eval": {
-    "enable": true,
     "target": {
-      "args": [
-        "-f",
-        "default.nix"
-      ],
-      "installable": ".#packages.x86_64-linux.default"
+      "installable": ".#packages.\"x86_64-linux\".default"
     },
-    "depth": 10,
-    "workers": 5
   },
   "formatting": {
     "command": "nixpkgs-fmt"

@@ -112,11 +112,11 @@
     #############################
 
     # startup screen
-    dashboard-nvim = {
-      url = github:nvimdev/dashboard-nvim;
+    startup-nvim = {
+      url = github:startup-nvim/startup.nvim;
       flake = false;
     };
-    
+
     # ui
     noice-nvim = {
       url = github:folke/noice.nvim;
@@ -150,7 +150,7 @@
       flake = false;
     };
 
-    rosepine = {
+    rose-pine = {
       url = github:rose-pine/neovim;
       flake = false;
     };
@@ -180,6 +180,11 @@
 
     nvim-treesitter = {
       url = github:nvim-treesitter/nvim-treesitter;
+      flake = false;
+    };
+
+    nvim-lspsaga = {
+      url = github:nvimdev/lspsaga.nvim;
       flake = false;
     };
 
@@ -226,7 +231,7 @@
     };
 
     # markdown
-    glow-nvim = {
+    glow = {
       url = github:ellisonleao/glow.nvim;
       flake = false;
     };

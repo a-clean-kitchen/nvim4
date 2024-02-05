@@ -10,7 +10,7 @@ in {
       lualine
     ];
 
-    vim.luaConfigRC = ''
+    vim.luaConfigRC = /*lua*/ ''
       local status, lualine = pcall(require, "lualine")
       if (not status) then return end
       lualine.setup({
@@ -18,10 +18,6 @@ in {
           theme = "${config.vim.theme.name}",
         }
       })
-
-      ${writeIf config.vim.theme.transparency ''
-      require('transparent').clear_prefix('lualine')
-      ''}
     '';
   };
 }

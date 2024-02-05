@@ -24,7 +24,7 @@ in {
     '';
 
     vim.nmap = {
-      "<leader>tf" = {
+      "<leader>F" = {
         mapping = ":Neotree filesystem reveal float<CR>";
         description = "Open filesystem";
       };

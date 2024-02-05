@@ -105,33 +105,6 @@
           '';
         };
       };
-
-      inoremap = {
-        "{" = {
-          mapping = "{}<ESC>i";
-          description = "Insert {}";
-        };
-        "[" = {
-          mapping = "[]<ESC>i";
-          description = "Insert []";
-        };
-        "(" = {
-          mapping = "()<ESC>i";
-          description = "Insert ()";
-        };
-        "\\\"" = {
-          mapping = "\\\"\\\"<ESC>i";
-          description = "Insert \\\"\\\"";
-        };
-        "\\'" = {
-          mapping = "\\'\\'<ESC>i";
-          description = "Insert ''";
-        };
-        "`" = {
-          mapping = "``<ESC>i";
-          description = "Insert ``";
-        };
-      };
     };
   };
 }

@@ -29,10 +29,10 @@ in
     ];
     
     vim.startLuaConfigRC = /*lua*/ ''
-      local status, cmp = pcall(require, 'cmp')
+      local status, cmp = pcall(require, "cmp")
       if (not status) then return end
 
-      local status, lspkind = pcall(require, 'lspkind')
+      local status, lspkind = pcall(require, "lspkind")
       if (not status) then return end
     '';
 
@@ -57,8 +57,8 @@ in
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'treesitter' },
-          { name = 'vsnip' },
-          { name = 'buffer' },
+          -- { name = 'vsnip' },
+          -- { name = 'buffer' },
           { name = 'cmdline' },
         },
         mapping = {

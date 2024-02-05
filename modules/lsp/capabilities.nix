@@ -4,7 +4,7 @@ let
   cfg = config.vim.lsp.capabilities;
   
   inherit (lib) mkOption mkIf types;
-  inherit (lib.my) vimBindingPre trueToString writeIf;
+  inherit (lib.my) vimBindingPre trueToString writeIf indent;
   inherit (builtins) concatStringsSep;
 in
 {
@@ -97,7 +97,7 @@ in
       };
     in /*lua*/ ''
       local attach_keymaps = function(client, bufnr)
-        ${concatStringsSep "\n" (mapLSPKeys "nnoremap" keys)}
+      ${indent "  " (concatStringsSep "\n" (mapLSPKeys "nnoremap" keys))}
       end
     '';
 
@@ -129,9 +129,9 @@ in
         cfg = config.vim.autocomplete;
       in
         writeIf cfg.enable /*lua*/ ''
-          capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+          capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities);
         ''
-      };
+      }
 
       ${config.vim.lsp.lspconfigSetup}
 
