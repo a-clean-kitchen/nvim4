@@ -232,7 +232,7 @@
 
     # typescript
     typescript-tools = {
-      url = pmizio/typescript-tools.nvim;
+      url = github:pmizio/typescript-tools.nvim;
       flake = false;
     };
 
