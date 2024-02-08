@@ -230,6 +230,12 @@
       flake = false;
     };
 
+    # typescript
+    typescript-tools = {
+      url = pmizio/typescript-tools.nvim;
+      flake = false;
+    };
+
     # markdown
     glow = {
       url = github:ellisonleao/glow.nvim;

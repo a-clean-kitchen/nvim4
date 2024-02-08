@@ -8,6 +8,10 @@
   config = {
     vim = {
       nmap = {
+        "<leader>qq" = {
+          mapping = "<cmd>q<CR>";
+          description = "Close nvim";
+        };
         # buffer management
         "<leader>bk" = {
           mapping = "<cmd>bd<CR>";
