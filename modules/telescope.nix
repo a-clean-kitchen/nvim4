@@ -14,6 +14,7 @@ in {
     '';
 
     vim.luaConfigRC = /*lua*/ ''
+      -- blanko
       vim.keymap.set('n', '<leader>ff', tsBuiltin.find_files, { desc = "Find Files" })
       vim.keymap.set('n', '<leader>fg', tsBuiltin.live_grep, { desc = "Live Grep" })
       vim.keymap.set('n', '<leader>fb', tsBuiltin.buffers, { desc = "Buffers" })

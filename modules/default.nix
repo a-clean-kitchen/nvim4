@@ -9,6 +9,8 @@
     ./langs
     ./completion.nix
     ./noice.nix
+    ./autopairs.nix
+    ./nonsense.nix
     ./glow.nix
     ./startup.nix
     ./lspsaga.nix

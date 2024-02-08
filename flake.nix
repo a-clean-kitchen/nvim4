@@ -248,6 +248,12 @@
       flake = false;
     };
     
+    # auto-pairs
+    autopairs = {
+      url = github:windwp/nvim-autopairs;
+      flake = false;
+    };
+
     # misc
     cellular-automaton = {
       url = github:Eandrju/cellular-automaton.nvim;

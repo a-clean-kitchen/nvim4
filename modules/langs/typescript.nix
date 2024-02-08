@@ -2,4 +2,14 @@
 
 let
   cfg = config.vim.lsp;
-in {}
+in {
+  config = {
+    vim.startPlugins = with pkgs.myVimPlugins; [
+      
+    ];
+
+    vim.luaConfigRC = ''
+      
+    '';
+  };
+}

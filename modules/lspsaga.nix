@@ -23,10 +23,6 @@ in {
     vim.luaConfigRC = let
       lspsagaMap = vimBindingPre {};
       nKeys = {
-        "<leader>tf" = {
-          mapping = "<cmd>Lspsaga term_toggle<CR>";
-          description = "Toggle terminal";
-        };
         "<C-j>" = {
           mapping = "<Cmd>Lspsaga diagnostic_jump_next<CR>";
           description = "Jump to next diagnostic";
@@ -55,6 +51,7 @@ in {
         };
       };
     in ''
+      vim.keymap.set({'n', 't'}, '<A-d>', '<cmd>Lspsaga term_toggle<CR>')
       ${(concatStringsSep "\n" (lspsagaMap "nmap" nKeys))}
       ${(concatStringsSep "\n" (lspsagaMap "imap" iKeys))}
     '';

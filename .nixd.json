@@ -1,9 +1,4 @@
 {
-  "eval": {
-    "target": {
-      "installable": ".#packages.\"x86_64-linux\".default"
-    },
-  },
   "formatting": {
     "command": "nixpkgs-fmt"
   },

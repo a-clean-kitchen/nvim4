@@ -12,10 +12,13 @@ in {
     ];
 
     vim.luaConfigRC = ''
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+      vim.g.loaded_netrwSettings = 1
+      vim.g.loaded_netrwFileHandlers = 1
+
       require('neo-tree').setup({
-        filesystem = {
-          hijack_netrw_behavior = "open_current"
-        },
+        hijack_netrw_behavior = 'open_current',
       })
 
       ${writeIf config.vim.theme.transparency ''

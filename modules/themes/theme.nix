@@ -72,13 +72,22 @@ in
 
     vim.luaConfigRC = ''
       vim.cmd.colorscheme("${cfg.name}")
+
+      vim.keymap.set('n', '<leader>tt', function()
+        vim.cmd('TransparentToggle')
+        if vim.g.transparent_enabled then
+          vim.cmd[[highlight LineNr guifg=#D3C6AA]]
+        else
+          vim.cmd[[colorscheme ${cfg.name}]]
+        end
+      end, { noremap = true, silent = true })
     '';
 
-    vim.nmap = {
-      "<leader>tt" = {
-        mapping = "<cmd>TransparentToggle<CR>";
-        description = "Toggle Transparency";
-      };
-    };
+#     vim.nmap = {
+#       "<leader>tt" = {
+#         mapping = "<cmd>TransparentToggle<CR>";
+#         description = "Toggle Transparency";
+#       };
+#     };
   });
 }

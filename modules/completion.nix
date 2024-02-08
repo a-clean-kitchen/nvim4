@@ -52,15 +52,14 @@ in
             vim.fn["vsnip#anonymous"](args.body)
           end,
         },
-        sources = {
-          { name = 'nvim_lua' },
+        sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'treesitter' },
-          -- { name = 'vsnip' },
-          -- { name = 'buffer' },
-          { name = 'cmdline' },
-        },
+          { name = 'vsnip' },
+        }, {
+          { name = 'buffer' },
+        }),
         mapping = {
           ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
           ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -100,6 +99,15 @@ in
           completeopt = 'menu,menuone,noinsert',
         },
       }) 
+
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
+      })
     '';
   };
 }
