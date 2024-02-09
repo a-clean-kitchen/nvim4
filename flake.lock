@@ -707,6 +707,7 @@
         "transparent-nvim": "transparent-nvim",
         "true-zen": "true-zen",
         "twilight": "twilight",
+        "typescript-tools": "typescript-tools",
         "vim-vsnip": "vim-vsnip",
         "which-key": "which-key"
       }
@@ -835,6 +836,22 @@
       "original": {
         "owner": "folke",
         "repo": "twilight.nvim",
+        "type": "github"
+      }
+    },
+    "typescript-tools": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705389494,
+        "narHash": "sha256-kpdDYVd6uSuJImS9LU5p/vJgtj9tToNBvRTJHpsHyak=",
+        "owner": "pmizio",
+        "repo": "typescript-tools.nvim",
+        "rev": "c43d9580c3ff5999a1eabca849f807ab33787ea7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pmizio",
+        "repo": "typescript-tools.nvim",
         "type": "github"
       }
     },

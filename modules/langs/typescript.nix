@@ -8,11 +8,11 @@ in {
       typescript-tools 
     ];
     vim.startLuaConfigRC = ''
-      local status, typescript-tools = pcall(require, "typescript-tools")
+      local status, typescripttools = pcall(require, "typescript-tools")
       if (not status) then return end
     '';
     vim.luaConfigRC = ''
-      typescript-tools.setup {
+      typescripttools.setup {
         on_attach = default_on_attach,
       }
     '';
