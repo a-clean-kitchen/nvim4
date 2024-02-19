@@ -51,7 +51,7 @@ in {
         };
       };
     in ''
-      vim.keymap.set({'n', 't'}, '<A-d>', '<cmd>Lspsaga term_toggle<CR>')
+      vim.keymap.set({'n', 't'}, '<A-d>', '<cmd>Lspsaga term_toggle<CR>', { desc = "Toggle the FLoating Terminal"})
       ${(concatStringsSep "\n" (lspsagaMap "nmap" nKeys))}
       ${(concatStringsSep "\n" (lspsagaMap "imap" iKeys))}
     '';

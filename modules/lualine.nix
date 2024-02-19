@@ -20,6 +20,10 @@ in {
         },
         sections = {
           lualine_x = {
+            { 
+              'copilot',
+              show_colors = true,
+            },
             {
               require("noice").api.status.message.get_hl,
               cond = require("noice").api.status.message.has,
@@ -42,7 +46,6 @@ in {
           },
         },
       })
-
       ${writeIf config.vim.theme.transparency ''
         require('transparent').clear_prefix('lualine')
       ''}

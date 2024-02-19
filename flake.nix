@@ -99,7 +99,7 @@
       url = github:inclyc/flake-compat;
       flake = false;
     };
-
+    
     #########################
     # the flaked plugins :) #
     #########################
@@ -230,6 +230,21 @@
       flake = false;
     };
 
+    # it's not cheating. it's 10x development.
+    copilot-lua = {
+      url = github:zbirenbaum/copilot.lua;
+      flake = false;
+    };
+
+    copilot-cmp = {
+      url = github:zbirenbaum/copilot-cmp;
+      flake = false;
+    };
+
+    copilot-lualine = {
+      url = github:AndreM222/copilot-lualine;
+      flake = false;
+    };
     # typescript
     typescript-tools = {
       url = github:pmizio/typescript-tools.nvim;

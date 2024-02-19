@@ -9,6 +9,7 @@ let
 in
 mkShell {
   buildInputs = [
+    deadnix
     git
     nixpkgs-fmt
     # packages."x86_64-linux".default

@@ -10,6 +10,7 @@
     ./completion.nix
     ./noice.nix
     ./autopairs.nix
+    ./copilot.nix
     ./nonsense.nix
     ./glow.nix
     ./startup.nix
