@@ -4,10 +4,12 @@ let
   cfg = config.vim.glow;
   inherit (lib) mkOption mkIf;
 in {
-  options.vim.glow = mkOption {
-    default = true;
-    type = lib.types.bool;
-    description = "Enable glow markup previewer";
+  options.vim.glow = {
+    enable = mkOption {
+      default = true;
+      type = lib.types.bool;
+      description = "Enable glow markup previewer";
+    };
   };
 
   config = mkIf cfg.enable {
