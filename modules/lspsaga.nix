@@ -14,10 +14,15 @@ in {
     vim.startPlugins = with pkgs.myVimPlugins; [
       nvim-lspsaga
     ];
-    vim.startLuaConfigRC = ''
-    local status, lspsaga = pcall(require, 'lspsaga')
-    if (not status) then return end
-    lspsaga.setup({})
+
+    vim.startLuaConfigRC = /*lua*/ ''
+      local status, lspsaga = pcall(require, 'lspsaga')
+      if (not status) then return end
+      lspsaga.setup({
+        lightbulb = {
+          enable = false
+        }
+      })
     '';
 
     vim.luaConfigRC = let
@@ -32,7 +37,7 @@ in {
           description = "Show hover documentation";
         };
         "gd" = {
-          mapping = "<Cmd>Lspsaga lsp_finder<CR>";
+          mapping = "<Cmd>Lspsaga finder<CR>";
           description = "Find references";
         };
         "gp" = {
@@ -43,11 +48,15 @@ in {
           mapping = "<Cmd>Lspsaga rename<CR>";
           description = "Rename";
         };
+        "cA" = {
+          mapping = "<cmd>Lspsaga code_action<CR>";
+          description = "Code action";
+        };
       };
       iKeys = {
         "<C-k>" = {
           mapping = "<Cmd>Lspsaga signature_help<CR>";
-          description = "Show signature help";
+          description = "Show signature_help";
         };
       };
     in ''

@@ -28,7 +28,6 @@ in
           },
         }
     '';
-    vim.tsGrammars = [ "nix" ];
     vim.startPlugins = with pkgs.vimPlugins;
       [ nvim-treesitter.withAllGrammars ];
   };

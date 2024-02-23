@@ -10,8 +10,16 @@ in {
       nvim-notify
     ];
 
+    vim.startLuaConfigRC = /*lua*/''
+      local status, noice = pcall(require, 'noice')
+      if (not status) then return end
+
+      local status, notify = pcall(require, 'notify')
+      if (not status) then return end
+    '';
+
     vim.luaConfigRC = /*lua*/ ''
-      require("noice").setup({
+      noice.setup({
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
           override = {
@@ -28,6 +36,10 @@ in {
           inc_rename = false, -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = true, -- add a border to hover docs and signature help
         },
+      })
+
+      notify.setup({
+        background_colour = "#000000"
       })
     '';
   };
