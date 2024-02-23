@@ -16,14 +16,11 @@ in {
     vim.luaConfigRC = /*lua*/ ''
       lualine.setup({
         options = {
+          globalstatus = true,
           theme = "${config.vim.theme.name}",
         },
         sections = {
           lualine_x = {
-            { 
-              'copilot',
-              show_colors = true,
-            },
             {
               require("noice").api.status.message.get_hl,
               cond = require("noice").api.status.message.has,
