@@ -17,17 +17,18 @@ in {
       glow
     ];
 
-    vim.startLuaConfigRC = ''
+    vim.startLuaConfigRC = /*lua*/ ''
       local status, glow = pcall(require, "glow")
       if (not status) then return end
-
-      glow.setup({})
     '';
 
-    vim.luaConfigRC = ''
+    vim.luaConfigRC = /*lua*/ ''
+      glow.setup({})
+
       vim.api.nvim_create_augroup("Markdown", {
         clear = true,
       })
+
       vim.api.nvim_create_autocmd({"FileType"}, {
         pattern = "markdown",
         callback = function ()

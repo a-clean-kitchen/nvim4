@@ -2,22 +2,24 @@
 
 {
   imports = [
+    ./lsp
     ./base
     ./keys
-    ./themes
-    ./lsp
     ./langs
-    ./completion.nix
-    ./noice.nix
-    ./autopairs.nix
-    ./copilot.nix
-    ./nonsense.nix
+    ./themes
     ./glow.nix
+    ./noice.nix
+    ./copilot.nix
+    ./lualine.nix
     ./startup.nix
     ./lspsaga.nix
+    ./nonsense.nix
     ./neo-tree.nix
     ./true-zen.nix
-    ./lualine.nix
+    ./colorizer.nix
+    ./autopairs.nix
     ./telescope.nix
+    ./completion.nix
+    ./code-actions.nix
   ];
 }

@@ -280,6 +280,12 @@
       url = github:Eandrju/cellular-automaton.nvim;
       flake = false;
     };
+    
+    # color previews
+    nvim-colorizer = {
+      url = github:norcalli/nvim-colorizer.lua;
+      flake = false;
+    };
 
     # just dependencies
     plenary-nvim = {
