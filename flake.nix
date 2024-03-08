@@ -72,14 +72,14 @@
 
       devShells."${system}" = { default = import ./shell.nix { inherit pkgs; inherit (self) packages; }; };
 
-      neovimOptions = lib.evalModules {
+      neovimOptions = (lib.evalModules {
         modules = [
           { imports = [ ./modules ]; }
         ];
         specialArgs = {
           inherit pkgs;
         };
-      };
+      }).options // {lib = lib; builtins = builtins;};
     };
 
   inputs = {
