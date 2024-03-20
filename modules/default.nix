@@ -20,6 +20,5 @@
     ./autopairs.nix
     ./telescope.nix
     ./completion.nix
-    ./code-actions.nix
   ];
 }
