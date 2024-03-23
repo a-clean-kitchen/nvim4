@@ -43,9 +43,6 @@ in {
           },
         },
       })
-      ${writeIf config.vim.theme.transparency ''
-        require('transparent').clear_prefix('lualine')
-      ''}
     '';
   };
 }

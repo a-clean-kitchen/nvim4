@@ -33,21 +33,13 @@ in
         rp (ef cp);
       description = "Theme Style";
     };
-
-    transparency = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable Transparent Background";
-    };
-
   };
 
   config = mkIf cfg.enable ({
     vim.startPlugins = with pkgs.myVimPlugins; (
       (withPlugins (cfg.name == "catppuccin") [ catppuccin ]) ++
       (withPlugins (cfg.name == "everforest") [ everforest ]) ++
-      (withPlugins (cfg.name == "rose-pine") [ rose-pine ]) ++
-      (withPlugins (cfg.transparency) [ transparent-nvim ])
+      (withPlugins (cfg.name == "rose-pine") [ rose-pine ]) 
     );
     
     vim.startLuaConfigRC = /*lua*/ ''
@@ -72,14 +64,6 @@ in
 
     vim.luaConfigRC = ''
       vim.cmd.colorscheme("${cfg.name}")
-      vim.keymap.set('n', '<leader>tt', function()
-        vim.cmd('TransparentToggle')
-        if vim.g.transparent_enabled then
-          vim.cmd[[highlight LineNr guifg=#D3C6AA]]
-        else
-          vim.cmd[[colorscheme ${cfg.name}]]
-        end
-      end, { noremap = true, silent = true })
     '';
   });
 }

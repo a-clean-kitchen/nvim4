@@ -20,10 +20,6 @@ in {
       require('neo-tree').setup({
         hijack_netrw_behavior = 'open_current',
       })
-
-      ${writeIf config.vim.theme.transparency ''
-      require('transparent').clear_prefix('NeoTree')
-      ''}
     '';
 
     vim.nmap = {

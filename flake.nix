@@ -154,12 +154,6 @@
       flake = false;
     };
 
-    # transparency
-    transparent-nvim = {
-      url = github:xiyaowong/transparent.nvim;
-      flake = false;
-    };
-
     # Neovim LSP everything
     nvim-lspconfig = {
       url = github:neovim/nvim-lspconfig;
