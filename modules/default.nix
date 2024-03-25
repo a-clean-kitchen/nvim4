@@ -11,6 +11,7 @@
     ./noice.nix
     ./copilot.nix
     ./lualine.nix
+    ./luasnip.nix
     ./startup.nix
     ./lspsaga.nix
     ./nonsense.nix

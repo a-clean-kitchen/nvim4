@@ -154,6 +154,12 @@
       flake = false;
     };
 
+    # snippets
+    luasnip = {
+      url = github:L3MON4D3/LuaSnip;
+      flake = false;
+    };
+
     # Neovim LSP everything
     nvim-lspconfig = {
       url = github:neovim/nvim-lspconfig;
@@ -176,6 +182,11 @@
       flake = false;
     };
 
+    cmp-luasnip = {
+      url = github:saadparwaiz1/cmp_luasnip;
+      flake = false;
+    };
+    
     cmp-buffer = {
       url = github:hrsh7th/cmp-buffer;
       flake = false;
@@ -183,11 +194,6 @@
 
     cmp-nvim-lsp = {
       url = github:hrsh7th/cmp-nvim-lsp;
-      flake = false;
-    };
-
-    vim-vsnip = {
-      url = github:hrsh7th/vim-vsnip;
       flake = false;
     };
 
@@ -299,9 +305,5 @@
       url = github:folke/twilight.nvim;
       flake = false;
     };
-#     gitsigns-nvim = {
-#       url = github:lewis6991/gitsigns.nvim;
-#       flake = false;
-#     };
   };
 }
