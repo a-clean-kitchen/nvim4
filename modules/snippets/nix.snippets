@@ -1,0 +1,27 @@
+snippet modi "Module Initialization"
+	{ config, lib, pkgs, ... }:
+
+	let
+		cfg = config.$1;
+
+		inherit (lib) mkIf mkOption types;
+	in
+	{
+		options.$1 = {
+				enable = mkOption {
+					type = types.bool;
+					default = true;
+					description = "enable $2";
+				};
+			};
+		
+
+		config = mkIf cfg.enable {$3};
+	}
+
+snippet defi "default.nix Initialization"
+	{ ... }:
+
+	{
+		imports = [$1]
+	}
