@@ -4,13 +4,6 @@ let
   cfg = config.vim.autocomplete;
   snippetOn = config.vim.luasnip.enable;
   
-  snippetsRepo = pkgs.fetchFromGitHub {
-        owner = "a-clean-kitchen";
-        repo = "snipmate-snippets";
-        rev = "main";
-        hash = "sha256-QAY4N3+MJK2CE1ikMvGQQ/k8t7GF8ID+mbaULvPh7x0=";
-  };
-
   inherit (lib) mkIf mkOption types;
   inherit (lib.my) withPlugins writeIf indent;
 in
@@ -50,7 +43,7 @@ in
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
-      require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "${snippetsRepo}/snippets" } })
+      require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "${ ./snippets }" } })
       cmp.setup({
         snippet = {
           expand = function(args)
