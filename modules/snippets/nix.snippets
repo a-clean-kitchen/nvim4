@@ -1,5 +1,4 @@
 snippet modi "Module Initialization"
-	{ config, lib, pkgs, ... }:
 
 	let
 		cfg = config.$1;
@@ -23,5 +22,16 @@ snippet defi "default.nix Initialization"
 	{ ... }:
 
 	{
-		imports = [$1];
+		imports = [
+			$1
+		];
 	}
+
+snippet bmodi "Blank Module Initialization"
+	{ config, lib, pkgs, ... }:
+
+	{
+		$1
+	}
+
+
