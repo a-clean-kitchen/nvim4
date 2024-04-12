@@ -93,7 +93,7 @@
     #########################
 
     # nix lsp support
-    nixd.url = github:nix-community/nixd;
+    nixd.url = github:nix-community/nixd/release/1.2;
 
     #############################
     # the not flaked plugins :) #
