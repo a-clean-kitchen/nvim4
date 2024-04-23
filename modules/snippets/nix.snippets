@@ -24,7 +24,7 @@ snippet defi "default.nix Initialization"
 
 	{
 		imports = [
-			$1
+			$0
 		];
 	}
 
@@ -32,10 +32,10 @@ snippet bmodi "Blank Module Initialization"
 	{ config, lib, pkgs, ... }:
 
 	{
-		$1
+		$0
 	}
 
 snippet letlib "Let In with inherit lib"
 	let
-	  inherit (lib) $1;
+	  inherit (lib) $0;
 	in 
