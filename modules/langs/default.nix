@@ -2,10 +2,11 @@
 
 {
   imports = [
+    ./go.nix
     ./nix.nix 
     ./zig.nix
-    ./go.nix
-    ./typescript.nix
     ./lua.nix
+    ./rust.nix
+    ./typescript.nix
   ];
 }

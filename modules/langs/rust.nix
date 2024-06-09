@@ -2,4 +2,19 @@
 
 let
   cfg = config.vim.lsp;
-in {}
+in {
+  vim.lsp = {
+    lspconfigSetup = /*lua*/ ''
+      lspconfig.rust_analyzer.setup {
+        cmd = { testForLSPBinaryOnPath("rust-analyzer", "${pkgs.rust-analyzer}/bin/rust-analyzer") },
+        settings = {
+          ['rust-analyzer'] = {
+            diagnostics = {
+              enable = false;
+            }
+          }
+        }
+      }
+    '';
+  };
+}
