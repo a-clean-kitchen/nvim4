@@ -7,6 +7,7 @@
     ./zig.nix
     ./lua.nix
     ./rust.nix
+    ./python.nix
     ./typescript.nix
   ];
 }
