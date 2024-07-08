@@ -1,7 +1,7 @@
 {
   description = "Neovim Configuration built using Nix";
 
-  outputs = inputs @ { self, nixpkgs, flake-parts, neovim, ... }:
+  outputs = inputs @ { self, nixpkgs, neovim, ... }:
     let
       system = "x86_64-linux";
 
@@ -76,7 +76,6 @@
     ######################
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
