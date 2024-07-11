@@ -159,6 +159,11 @@
       flake = false;
     };
 
+    vim-react-snippets = {
+      url = github:mlaursen/vim-react-snippets;
+      flake = false;
+    };
+
     # Neovim LSP everything
     nvim-lspconfig = {
       url = github:neovim/nvim-lspconfig;

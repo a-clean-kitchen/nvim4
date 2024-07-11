@@ -773,6 +773,7 @@
         "true-zen": "true-zen",
         "twilight": "twilight",
         "typescript-tools": "typescript-tools",
+        "vim-react-snippets": "vim-react-snippets",
         "which-key": "which-key"
       }
     },
@@ -900,6 +901,22 @@
       "original": {
         "owner": "pmizio",
         "repo": "typescript-tools.nvim",
+        "type": "github"
+      }
+    },
+    "vim-react-snippets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1714138244,
+        "narHash": "sha256-ntIyHBJG7fiq+N4jeeR+GClw+0y0ZSfGyaZNlmo9KEw=",
+        "owner": "mlaursen",
+        "repo": "vim-react-snippets",
+        "rev": "19c86459f4cd545f889624df13b8d5862457c633",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mlaursen",
+        "repo": "vim-react-snippets",
         "type": "github"
       }
     },
