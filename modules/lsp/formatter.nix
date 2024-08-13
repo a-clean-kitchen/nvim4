@@ -26,7 +26,7 @@ in
     '';
 
     vim.luaConfigRC = /*lua*/ ''
-      -- Utilities for creating configurations
+       -- Utilities for creating configurations
       local fmt_util = require "formatter.util"
 
       -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
@@ -35,6 +35,20 @@ in
         logging = true,
         -- Set the log level
         log_level = vim.log.levels.WARN,
+        filetype = {
+          typescriptreact = {
+            require("formatter.filetypes.typescript").prettier,
+          },
+          typescript = {
+            require("formatter.filetypes.typescript").prettier,
+          },
+          javascriptreact = {
+            require("formatter.filetypes.javascript").prettier,
+          },
+          javascript = {
+            require("formatter.filetypes.javascript").prettier,
+          },
+        }
       }
     '';
   };
