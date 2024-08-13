@@ -334,6 +334,22 @@
         "type": "github"
       }
     },
+    "formatter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710786051,
+        "narHash": "sha256-pNKa8vPP2cmyGhdoW/S5XoboL4ErVAwiP8YkDGq/TGI=",
+        "owner": "mhartington",
+        "repo": "formatter.nvim",
+        "rev": "ad246d34ce7a32f752071ed81b09b94e6b127fad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mhartington",
+        "repo": "formatter.nvim",
+        "type": "github"
+      }
+    },
     "glow": {
       "flake": false,
       "locked": {
@@ -586,6 +602,22 @@
         "type": "github"
       }
     },
+    "null-ls": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1691810493,
+        "narHash": "sha256-cWA0rzkOp/ekVKaFee7iea1lhnqKtWUIU+fW5M950wI=",
+        "owner": "jose-elias-alvarez",
+        "repo": "null-ls.nvim",
+        "rev": "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jose-elias-alvarez",
+        "repo": "null-ls.nvim",
+        "type": "github"
+      }
+    },
     "nvim-bufferline": {
       "flake": false,
       "locked": {
@@ -747,6 +779,7 @@
         "copilot-lualine": "copilot-lualine",
         "everforest": "everforest",
         "flake-compat": "flake-compat",
+        "formatter": "formatter",
         "glow": "glow",
         "lsp-kind": "lsp-kind",
         "lualine": "lualine",
@@ -757,6 +790,7 @@
         "nixpkgs": "nixpkgs_2",
         "noice-nvim": "noice-nvim",
         "nui": "nui",
+        "null-ls": "null-ls",
         "nvim-bufferline": "nvim-bufferline",
         "nvim-cmp": "nvim-cmp",
         "nvim-colorizer": "nvim-colorizer",

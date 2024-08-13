@@ -237,6 +237,7 @@
       url = github:AndreM222/copilot-lualine;
       flake = false;
     };
+
     # typescript
     typescript-tools = {
       url = github:pmizio/typescript-tools.nvim;
@@ -273,6 +274,12 @@
       flake = false;
     };
     
+    # formatter
+    formatter = {
+      url = github:mhartington/formatter.nvim;
+      flake = false;
+    };
+
     # color previews
     nvim-colorizer = {
       url = github:norcalli/nvim-colorizer.lua;
@@ -282,6 +289,11 @@
     # just dependencies
     plenary-nvim = {
       url = github:nvim-lua/plenary.nvim;
+      flake = false;
+    };
+
+    null-ls = {
+      url = github:jose-elias-alvarez/null-ls.nvim;
       flake = false;
     };
 

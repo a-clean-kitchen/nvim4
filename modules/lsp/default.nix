@@ -9,6 +9,7 @@ in
 {
   imports = [
     ./capabilities.nix
+    ./formatter.nix
   ];
 
   options.vim.lsp = {
