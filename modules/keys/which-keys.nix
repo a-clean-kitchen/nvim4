@@ -2,7 +2,8 @@
 
 let
   cfg = config.vim.which-key;
-
+  inherit (lib.my) vimBindingPre;
+  inherit (builtins) concatStringsSep;
   inherit (lib) mkOption types mkIf;
 in {
   options.vim.which-key.enable = mkOption {
@@ -18,11 +19,21 @@ in {
       startPlugins = with pkgs.myVimPlugins; [
         which-key
       ];
-      startLuaConfigRC = ''
-        local wk = require("which-key")
+      startLuaConfigRC = /*lua*/ ''
+        local status, whichKey = pcall(require, 'which-key')
+        if (not status) then return end
+        whichKey.setup {}
       '';
-      luaConfigRC = ''
-        require("which-key").setup {}
+      luaConfigRC = let
+         whichkeyMap = vimBindingPre {};
+         nKeys = {
+          "C-k" = {
+            mapping = "<Cmd>WhichKey<CR>";
+            description = "Which Keys!";
+          };
+         };
+      in ''
+        ${(concatStringsSep "\n" (whichkeyMap "nmap" nKeys))}
       '';
     };
   };
