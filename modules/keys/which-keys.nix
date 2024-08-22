@@ -27,7 +27,7 @@ in {
       luaConfigRC = let
          whichkeyMap = vimBindingPre {};
          nKeys = {
-          "C-k" = {
+          "<leader>K" = {
             mapping = "<Cmd>WhichKey<CR>";
             description = "Which Keys!";
           };
