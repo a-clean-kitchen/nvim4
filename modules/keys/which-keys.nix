@@ -24,17 +24,12 @@ in {
         if (not status) then return end
         whichKey.setup {}
       '';
-      luaConfigRC = let
-         whichkeyMap = vimBindingPre {};
-         nKeys = {
-          "<leader>K" = {
-            mapping = "<Cmd>WhichKey<CR>";
-            description = "Which Keys!";
-          };
-         };
-      in ''
-        ${(concatStringsSep "\n" (whichkeyMap "nmap" nKeys))}
-      '';
+      nmap = {
+        "<leader>K" = {
+          mapping = "<Cmd>WhichKey<CR>";
+          description = "Which Keys!";
+        };
+      };
     };
   };
 }

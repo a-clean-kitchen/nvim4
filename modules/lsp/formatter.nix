@@ -25,6 +25,13 @@ in
       if (not status) then return end
     '';
 
+    vim.nmap = {
+      "<leader>bF" = {
+        mapping = "<Cmd>Format<CR>";
+        description = "Format current buffer!";
+      };
+    };
+
     vim.luaConfigRC = /*lua*/ ''
        -- Utilities for creating configurations
       local fmt_util = require "formatter.util"
