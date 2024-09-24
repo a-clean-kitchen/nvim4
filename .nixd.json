@@ -1,13 +1,13 @@
 {
   "nixpkgs": {
-   "expr": "import (builtins.getFlake \".#\").inputs.nixpkgs { }   "
+   "expr": "import (builtins.getFlake \".\").inputs.nixpkgs { }   "
   },
   "formatting": {
     "command": [ "nixfmt" ]
   },
   "options": { 
-    "nixos": {  
-      "expr": "(builtins.getFlake \".#\").neovimOptions"
+    "nvimOpts: {  
+      "expr": "(builtins.getFlake \".\").neovimOptions"
     },
   },
   "diagnostic": {
