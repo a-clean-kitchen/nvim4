@@ -3,10 +3,8 @@
     "command": "nixpkgs-fmt"
   },
   "options": {
-    "enable": true,
-    "target": {
-      "args": [],
-      "installable": ".#neovimOptions"
+    "neovimOptions": {
+      "expr": "(builtins.getFlake .#).neovimOptions"
     }
   }
 }

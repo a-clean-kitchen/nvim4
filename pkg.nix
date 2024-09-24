@@ -36,6 +36,7 @@ let
       luaRC = pkgs.writeTextFile {
         name = "init.lua";
         text = ''
+          ${vim.luaHelperStuff}
           ${vim.startLuaConfigRC}
           ${vim.luaConfigRC}
 
