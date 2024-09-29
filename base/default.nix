@@ -4,8 +4,8 @@
     vim = {
       theme = {
         enable = true;
-        name = "everforest";
-        style = "soft";
+        name = "catppuccin";
+        style = "mocha";
       };
     };
   };
