@@ -76,7 +76,6 @@
     ######################
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -157,6 +156,11 @@
     # snippets
     luasnip = {
       url = "github:L3MON4D3/LuaSnip";
+      flake = false;
+    };
+
+    vim-react-snippets = {
+      url = github:mlaursen/vim-react-snippets;
       flake = false;
     };
 
@@ -254,6 +258,12 @@
       flake = false;
     };
     
+    # formatter
+    formatter = {
+      url = github:mhartington/formatter.nvim;
+      flake = false;
+    };
+
     # color previews
     nvim-colorizer = {
       url = "github:norcalli/nvim-colorizer.lua";
@@ -263,6 +273,11 @@
     # just dependencies
     plenary-nvim = {
       url = "github:nvim-lua/plenary.nvim";
+      flake = false;
+    };
+
+    null-ls = {
+      url = github:jose-elias-alvarez/null-ls.nvim;
       flake = false;
     };
 

@@ -18,14 +18,20 @@ in
   config = mkIf cfg.enable {
     vim.startPlugins = with pkgs.myVimPlugins; [
       luasnip
+      vim-react-snippets
     ];
 
     vim.startLuaConfigRC = /*lua*/ ''
       local status, luasnip = pcall(require, "luasnip")
       if (not status) then return end
+
+      local status, reactSnippets = pcall(require, "vim-react-snippets")
+      if (not status) then return end
     '';
 
     vim.luaConfigRC = /*lua*/ ''
+      reactSnippets.lazy_load()
+
       require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "${ ./snippets }" } })
 
       vim.keymap.set({"i"}, "<C-K>", function() luasnip.expand() end, {silent = true})

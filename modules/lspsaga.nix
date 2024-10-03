@@ -5,11 +5,6 @@ let
   inherit (lib.my) vimBindingPre;
   inherit (builtins) concatStringsSep;
 in {
-#   options.vim.lspsaga = {
-#     enable = mkOption {
-# 
-#     };
-#   };
   config = {
     vim.startPlugins = with pkgs.myVimPlugins; [
       nvim-lspsaga

@@ -23,6 +23,7 @@ in {
       autopairs.setup({
         disable_filetype = { "TelescopePrompt" , "vim" },
       })
+      --[[
       autopairs.add_rules({
         APRule("=", "")
           :with_pair(APcond.not_inside_quote())
@@ -52,6 +53,7 @@ in {
           :with_move(APcond.none())
           :with_del(APcond.none())
       })
+      ]]
     '';
   };
 }
