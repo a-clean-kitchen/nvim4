@@ -14,7 +14,7 @@ in {
     '';
 
     vim.luaConfigRC = /*lua*/ ''
-      colorizer.setup({})
+      colorizer.setup()
     '';
   };
 }
