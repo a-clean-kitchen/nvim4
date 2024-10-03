@@ -1,12 +1,18 @@
 {
-  "formatting": {
-    "command": "nixpkgs-fmt"
+  "nixpkgs": {
+   "expr": "import (builtins.getFlake \".\").inputs.nixpkgs { }   "
   },
-  "options": {
-    "enable": true,
-    "target": {
-      "args": [],
-      "installable": ".#neovimOptions"
-    }
+  "formatting": {
+    "command": [ "nixfmt" ]
+  },
+  "options": { 
+    "nvimOpts: {  
+      "expr": "(builtins.getFlake \".\").neovimOptions"
+    },
+  },
+  "diagnostic": {
+    "suppress": [
+      "sema-extra-with"
+    ]
   }
 }

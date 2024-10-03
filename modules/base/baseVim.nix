@@ -43,6 +43,12 @@ in
       default = "";
     };
 
+    luaHelperStuff = mkOption {
+      description = "helper stuff to init at the verrrry beginning";
+      type = types.lines;
+      default = "";
+    };
+    
     startLuaConfigRC = mkOption {
       description = "start of vim lua config";
       type = types.lines;

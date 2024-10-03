@@ -83,7 +83,7 @@
 
     # For nixd
     flake-compat = {
-      url = github:inclyc/flake-compat;
+      url = "github:inclyc/flake-compat";
       flake = false;
     };
     
@@ -92,7 +92,7 @@
     #########################
 
     # nix lsp support
-    nixd.url = github:nix-community/nixd/release/1.2;
+    nixd.url = "github:nix-community/nixd/2.3.2";
 
     #############################
     # the not flaked plugins :) #
@@ -100,62 +100,62 @@
 
     # startup screen
     startup-nvim = {
-      url = github:startup-nvim/startup.nvim;
+      url = "github:startup-nvim/startup.nvim";
       flake = false;
     };
 
     # ui
     noice-nvim = {
-      url = github:folke/noice.nvim;
+      url = "github:folke/noice.nvim";
       flake = false;
     };
 
     telescope = {
-      url = github:nvim-telescope/telescope.nvim;
+      url = "github:nvim-telescope/telescope.nvim";
       flake = false;
     };
     
     actions-preview-nvim = {
-      url = github:aznhe21/actions-preview.nvim;
+      url = "github:aznhe21/actions-preview.nvim";
       flake = false;
     };
 
     lsp-kind = {
-      url = github:onsails/lspkind-nvim;
+      url = "github:onsails/lspkind-nvim";
       flake = false;
     };
 
     # file tree
     neo-tree = {
-      url = github:nvim-neo-tree/neo-tree.nvim;
+      url = "github:nvim-neo-tree/neo-tree.nvim";
       flake = false;
     };
 
     # themes
     catppuccin = {
-      url = github:catppuccin/nvim;
+      url = "github:catppuccin/nvim";
       flake = false;
     };
 
     rose-pine = {
-      url = github:rose-pine/neovim;
+      url = "github:rose-pine/neovim";
       flake = false;
     };
     
     everforest = {
-      url = github:neanias/everforest-nvim;
+      url = "github:neanias/everforest-nvim";
       flake = false;
     };
 
     # focus
     true-zen = {
-      url = github:Pocco81/true-zen.nvim;
+      url = "github:Pocco81/true-zen.nvim";
       flake = false;
     };
 
     # snippets
     luasnip = {
-      url = github:L3MON4D3/LuaSnip;
+      url = "github:L3MON4D3/LuaSnip";
       flake = false;
     };
 
@@ -166,111 +166,95 @@
 
     # Neovim LSP everything
     nvim-lspconfig = {
-      url = github:neovim/nvim-lspconfig;
+      url = "github:neovim/nvim-lspconfig";
       flake = false;
     };
 
     nvim-treesitter = {
-      url = github:nvim-treesitter/nvim-treesitter;
+      url = "github:nvim-treesitter/nvim-treesitter";
       flake = false;
     };
 
     nvim-lspsaga = {
-      url = github:nvimdev/lspsaga.nvim;
+      url = "github:nvimdev/lspsaga.nvim";
       flake = false;
     };
 
     # completes me
     nvim-cmp = {
-      url = github:hrsh7th/nvim-cmp;
+      url = "github:hrsh7th/nvim-cmp";
       flake = false;
     };
 
     cmp-luasnip = {
-      url = github:saadparwaiz1/cmp_luasnip;
+      url = "github:saadparwaiz1/cmp_luasnip";
       flake = false;
     };
     
     cmp-buffer = {
-      url = github:hrsh7th/cmp-buffer;
+      url = "github:hrsh7th/cmp-buffer";
       flake = false;
     };
 
     cmp-nvim-lsp = {
-      url = github:hrsh7th/cmp-nvim-lsp;
+      url = "github:hrsh7th/cmp-nvim-lsp";
       flake = false;
     };
 
     cmp-path = {
-      url = github:hrsh7th/cmp-path;
+      url = "github:hrsh7th/cmp-path";
       flake = false;
     };
 
     cmp-cmdline = {
-      url = github:hrsh7th/cmp-cmdline;
+      url = "github:hrsh7th/cmp-cmdline";
       flake = false;
     };
 
     cmp-treesitter = {
-      url = github:ray-x/cmp-treesitter;
+      url = "github:ray-x/cmp-treesitter";
       flake = false;
     };
 
     # key binding help
     which-key = {
-      url = github:folke/which-key.nvim;
-      flake = false;
-    };
-
-    # it's not cheating. it's 10x development.
-    copilot-lua = {
-      url = github:zbirenbaum/copilot.lua;
-      flake = false;
-    };
-
-    copilot-cmp = {
-      url = github:zbirenbaum/copilot-cmp;
-      flake = false;
-    };
-
-    copilot-lualine = {
-      url = github:AndreM222/copilot-lualine;
+      url = "github:folke/which-key.nvim";
       flake = false;
     };
 
     # typescript
     typescript-tools = {
-      url = github:pmizio/typescript-tools.nvim;
+      url = "github:pmizio/typescript-tools.nvim";
       flake = false;
     };
 
     # markdown
     glow = {
-      url = github:ellisonleao/glow.nvim;
+      url = "github:ellisonleao/glow.nvim";
       flake = false;
     };
 
     # tablines
     nvim-bufferline = {
-      url = github:akinsho/bufferline.nvim;
+      url = "github:akinsho/bufferline.nvim";
       flake = false;
     };
 
     # statuslines
     lualine = {
-      url = github:nvim-lualine/lualine.nvim;
+      url = "github:nvim-lualine/lualine.nvim";
       flake = false;
     };
     
     # auto-pairs
     autopairs = {
-      url = github:windwp/nvim-autopairs;
+      url = "github:windwp/nvim-autopairs";
       flake = false;
     };
 
     # misc
     cellular-automaton = {
-      url = github:Eandrju/cellular-automaton.nvim;
+      url = "github:Eandrju/cellular-automaton.nvim";
       flake = false;
     };
     
@@ -282,13 +266,13 @@
 
     # color previews
     nvim-colorizer = {
-      url = github:norcalli/nvim-colorizer.lua;
+      url = "github:norcalli/nvim-colorizer.lua";
       flake = false;
     };
 
     # just dependencies
     plenary-nvim = {
-      url = github:nvim-lua/plenary.nvim;
+      url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
 
@@ -298,27 +282,27 @@
     };
 
     nvim-web-devicons = {
-      url = github:nvim-tree/nvim-web-devicons;
+      url = "github:nvim-tree/nvim-web-devicons";
       flake = false;
     };
     
     nui = {
-      url = github:MunifTanjim/nui.nvim;
+      url = "github:MunifTanjim/nui.nvim";
       flake = false;
     };
 
     nvim-notify = {
-      url = github:rcarriga/nvim-notify;
+      url = "github:rcarriga/nvim-notify";
       flake = false;
     };
 
     third-image = {
-      url = github:3rd/image.nvim;
+      url = "github:3rd/image.nvim";
       flake = false;
     };
 
     twilight = {
-      url = github:folke/twilight.nvim;
+      url = "github:folke/twilight.nvim";
       flake = false;
     };
   };
