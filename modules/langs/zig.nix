@@ -4,11 +4,14 @@ let
   cfg = config.vim.lsp;
 in {
   config = {
-    vim.luaConfigRC = /*lua*/ ''
-      -- Zig config
-      lspconfig.zls.setup {
-          cmd = { testForLSPBinaryOnPath("zls", "${pkgs.zls}/bin/zls") },
-      }
-    '';
+    vim = {
+      tsGrammars = [ "zig" ];
+      lsp.lspconfigSetup = /*lua*/ ''
+        -- Zig config
+        lspconfig.zls.setup {
+            cmd = { testForLSPBinaryOnPath("zls", "${pkgs.zls}/bin/zls") },
+        }
+      '';
+    };
   };
 }
