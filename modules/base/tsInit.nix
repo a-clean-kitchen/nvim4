@@ -2,7 +2,7 @@
 
 let
   cfg = config.vim.lsp;
-  inherit (lib) mkOption mkIf;
+  inherit (lib) mkOption mkIf attrVals;
 in
 {
   options.vim.ts.enable = mkOption {
@@ -12,7 +12,32 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.luaConfigRC = ''
+    vim = {
+      # Misc Grammars 
+      tsGrammars = [
+        "cmake"
+        "dockerfile"
+        "editorconfig"
+        "fish"
+        "git_config"
+        "git_rebase"
+        "gitattributes"
+        "gitcommit"
+        "gitignore"
+        "http"
+        "hyprlang"
+        "java"
+        "jq"
+        "json"
+        "make"
+        "ssh_config"
+        "hcl"
+        "terraform"
+        "tmux"
+        "vimdoc"
+        "yaml"
+      ];
+      luaConfigRC = ''
         -- Treesitter config
         require'nvim-treesitter.configs'.setup {
           highlight = {
@@ -27,8 +52,8 @@ in
             enable = true,
           },
         }
-    '';
-    vim.startPlugins = with pkgs.vimPlugins;
-      [ nvim-treesitter.withAllGrammars ];
+      '';
+      startPlugins = [ (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: (attrVals config.vim.tsGrammars p))) ];
+    };
   };
 }

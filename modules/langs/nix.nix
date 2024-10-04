@@ -4,8 +4,9 @@ let
   cfg = config.vim.lsp;
 in {
   config = {
-    vim.lsp = {
-      lspconfigSetup = /*lua*/ ''
+    vim = {
+      tsGrammars = [ "nix" ];
+      lsp.lspconfigSetup = /*lua*/ ''
         -- Nix config
         lspconfig.nixd.setup{
           capabilities = capabilities;
