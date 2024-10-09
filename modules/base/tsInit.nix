@@ -16,6 +16,7 @@ in
       # Misc Grammars 
       tsGrammars = [
         "cmake"
+        "css"
         "dockerfile"
         "editorconfig"
         "fish"
