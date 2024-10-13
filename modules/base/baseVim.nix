@@ -4,8 +4,7 @@ let
   cfg = config.vim;
   
   inherit (lib) 
-    mkOption types filterAttrs mapAttrsFlatten 
-    filterNonNull; 
+    mkOption types filterAttrs mapAttrsToList; 
 
   inherit (lib.my) vimBindingPre mkMappingOption;
   inherit (builtins) concatStringsSep toJSON;
@@ -148,7 +147,7 @@ in
     let
       filterNonNull = filterAttrs (name: value: value != null);
       globalsScript =
-        mapAttrsFlatten (name: value: "let g:${name}=${toJSON value}")
+        mapAttrsToList (name: value: "let g:${name}=${toJSON value}")
           (filterNonNull cfg.globals);
       mapVimBinding = vimBindingPre {};      
 
