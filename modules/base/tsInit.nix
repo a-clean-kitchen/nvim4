@@ -15,28 +15,44 @@ in
     vim = {
       # Misc Grammars 
       tsGrammars = [
-        "cmake"
-        "css"
-        "dockerfile"
+        # dotfile formats
+        "rasi"
+        "toml"
         "editorconfig"
+        "hyprlang"
         "fish"
+        "tmux"
+
+        # git
         "git_config"
         "git_rebase"
         "gitattributes"
         "gitcommit"
         "gitignore"
+
+        # linux admin formats
+        "ssh_config"
+        "passwd"
+
+        # documentation
+        "comment"
+        "vimdoc"
+
+        # various stray dev stuff
+        "yaml"
+        "sql"
+        "cmake"
+        "css"
+        "dockerfile"
+        "c"
+        "c_sharp"
         "http"
-        "hyprlang"
         "java"
         "jq"
         "json"
         "make"
-        "ssh_config"
         "hcl"
         "terraform"
-        "tmux"
-        "vimdoc"
-        "yaml"
       ];
       luaConfigRC = ''
         -- Treesitter config

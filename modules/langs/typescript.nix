@@ -8,6 +8,9 @@ in {
       tsGrammars = [
         "javascript"
         "typescript"
+        "tsx"
+        "angular"
+        "vue"
       ];
 
       startPlugins = with pkgs.myVimPlugins; [
