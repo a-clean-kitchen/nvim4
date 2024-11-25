@@ -44,13 +44,6 @@ let
         '';
       };
 
-      neovimRC = pkgs.writeTextFile {
-        name = "init.vim";
-        text = ''
-          ${vim.finalConfigRC}
-        '';
-      };
-
       finalConfigRC = ''
         ${vim.finalConfigRC}
 
@@ -59,6 +52,7 @@ let
         ${luaRC.text}
         EOF
       '';
+
 
       neovim = pkgs.wrapNeovim vim.package {
         inherit (vim) viAlias vimAlias;
