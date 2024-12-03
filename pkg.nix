@@ -16,15 +16,8 @@ let
       };
 
       inherit (vimOptions.config) vim;
-      langs = [ "nix" ];
-      grammars = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
-      treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (treesitterGrammars langs grammars);
-      starters = builtins.filter (f: f != null) vim.startPlugins;
     in
     rec {
-      # something to point nixd at :)
-      theOptions = vimOptions;
-
       completedPlugins = let 
           starters = builtins.filter (f: f != null) vim.startPlugins;
           ts = singleton (pkgs.vimPlugins.nvim-treesitter.withPlugins 
@@ -53,11 +46,15 @@ let
         EOF
       '';
 
+      configDump = pkgs.writeTextFile {
+        name = "fullConfig.lua";
+        text = finalConfigRC;
+      };
 
       neovim = pkgs.wrapNeovim vim.package {
         inherit (vim) viAlias vimAlias;
         configure = {
-          customRC = finalConfigRC;
+          customRC = builtins.trace finalConfigRC finalConfigRC;
 
           packages.myVimPackage = {
             start = completedPlugins;
@@ -69,8 +66,10 @@ let
 
   fullConfig = vimfig: deepMerge baseCfg vimfig;
 in
-{
+rec {
   full = vimfigBuilder {
     config = fullConfig conf;
   };
+  
+  inherit (full) configDump;
 }

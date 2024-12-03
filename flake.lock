@@ -811,6 +811,7 @@
         "telescope": "telescope",
         "third-image": "third-image",
         "true-zen": "true-zen",
+        "ts-autotag": "ts-autotag",
         "twilight": "twilight",
         "typescript-tools": "typescript-tools",
         "vim-react-snippets": "vim-react-snippets",
@@ -915,6 +916,22 @@
       "original": {
         "owner": "Pocco81",
         "repo": "true-zen.nvim",
+        "type": "github"
+      }
+    },
+    "ts-autotag": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733164313,
+        "narHash": "sha256-v2NTFBIzKTYizUPWB3uhpnTGVZWaelhE3MT5+BDA6Do=",
+        "owner": "windwp",
+        "repo": "nvim-ts-autotag",
+        "rev": "1cca23c9da708047922d3895a71032bc0449c52d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "windwp",
+        "repo": "nvim-ts-autotag",
         "type": "github"
       }
     },
