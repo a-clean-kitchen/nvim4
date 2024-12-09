@@ -48,13 +48,14 @@
       packages."${system}" = {
         default = self.packages."${system}".base;
         base = nvim4.full.neovim;
+        config = nvim4.full.configDump;
       };
 
-      apps = rec {
+      apps."${system}" = rec {
         default = base;
         base = {
           type = "app";
-          program = "${self.packages.default}/bin/nvim";
+          program = "${self.packages."${system}".default}/bin/nvim";
         };
       };
 
@@ -160,7 +161,7 @@
     };
 
     vim-react-snippets = {
-      url = github:mlaursen/vim-react-snippets;
+      url = "github:mlaursen/vim-react-snippets";
       flake = false;
     };
 
@@ -228,6 +229,12 @@
       flake = false;
     };
 
+    # html
+    ts-autotag = {
+      url = "github:windwp/nvim-ts-autotag";
+      flake = false;
+    };
+
     # markdown
     glow = {
       url = "github:ellisonleao/glow.nvim";
@@ -260,7 +267,7 @@
     
     # formatter
     formatter = {
-      url = github:mhartington/formatter.nvim;
+      url = "github:mhartington/formatter.nvim";
       flake = false;
     };
 
@@ -277,7 +284,7 @@
     };
 
     null-ls = {
-      url = github:jose-elias-alvarez/null-ls.nvim;
+      url = "github:jose-elias-alvarez/null-ls.nvim";
       flake = false;
     };
 
