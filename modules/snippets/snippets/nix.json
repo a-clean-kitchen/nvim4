@@ -124,7 +124,7 @@
       "  };",
       "",
       "",
-      "  config = mkIf cfg.enable {$3};",
+      "  config = mkIf cfg.enable {$0};",
       "}"
     ],
     "description": "Initialize a module"

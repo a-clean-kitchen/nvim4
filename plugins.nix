@@ -12,10 +12,7 @@ let
   inherit (self.neovimUtils) buildNeovimPlugin;
   inherit (lib.attrsets) nameValuePair mapAttrsToList;
   inherit (lib.lists) subtractLists;
-  inherit (lib) makeExtensible extends;
   inherit (builtins) listToAttrs;
-  
-  callPackage = lib.callPackageWith {};
 
   buildPlug = name: buildVimPlugin {
     pname = name;
@@ -122,11 +119,6 @@ let
       (map (n: nameValuePair n (if (builtins.hasAttr n overrides) then ((buildPlug n).overrideAttrs overrides.${n}) else (buildPlug n))) 
       (subtractLists (mapAttrsToList (name: value: name) miscPlugins) plugins)))
     // miscPlugins;
-
-  # myBasePlugins = (listToAttrs 
-  #     (map (n: nameValuePair n (buildPlug n))
-  #     (subtractLists (mapAttrsToList (name: value: name) miscPlugins) plugins)))
-  #   // miscPlugins;
 
   vimPlugins = super.vimPlugins // myBasePlugins;
 in {
