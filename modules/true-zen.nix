@@ -4,7 +4,7 @@ let
   cfg = config.vim.true-zen;
 in {
   config = {
-    vim.startPlugins = with pkgs.myVimPlugins; [
+    vim.startPlugins = with pkgs.vimPlugins; [
       true-zen
       twilight
     ];

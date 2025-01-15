@@ -13,7 +13,7 @@ in {
         "vue"
       ];
 
-      startPlugins = with pkgs.myVimPlugins; [
+      startPlugins = with pkgs.vimPlugins; [
         typescript-tools 
       ];
 

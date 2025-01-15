@@ -22,7 +22,7 @@ in {
         if (not status) then return end
       '';
       
-      startPlugins = with pkgs.myVimPlugins; [
+      startPlugins = with pkgs.vimPlugins; [
         noice-nvim
         nui
         nvim-notify

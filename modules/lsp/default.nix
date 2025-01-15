@@ -46,7 +46,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.startPlugins = with pkgs.myVimPlugins; [
+    vim.startPlugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp

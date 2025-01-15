@@ -4,7 +4,7 @@ let
   cfg = config.vim.colorizer;
 in {
   config = {
-    vim.startPlugins = with pkgs.myVimPlugins; [
+    vim.startPlugins = with pkgs.vimPlugins; [
       nvim-colorizer
     ];
 

@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     vim = {
-      startPlugins = with pkgs.myVimPlugins; [
+      startPlugins = with pkgs.vimPlugins; [
         which-key
       ];
       startLuaConfigRC = /*lua*/ ''

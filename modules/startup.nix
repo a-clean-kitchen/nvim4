@@ -4,7 +4,7 @@ let
   cfg = config.vim.startup;
 in {
   config = {
-    vim.startPlugins = with pkgs.myVimPlugins; [
+    vim.startPlugins = with pkgs.vimPlugins; [
       startup-nvim
     ];
 

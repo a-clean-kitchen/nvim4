@@ -54,7 +54,7 @@ let
       neovim = pkgs.wrapNeovim vim.package {
         inherit (vim) viAlias vimAlias;
         configure = {
-          customRC = builtins.trace finalConfigRC finalConfigRC;
+          customRC = finalConfigRC; # builtins.trace finalConfigRC finalConfigRC;
 
           packages.myVimPackage = {
             start = completedPlugins;

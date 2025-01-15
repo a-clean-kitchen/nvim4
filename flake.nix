@@ -23,7 +23,8 @@
       neovimPackageOverlay = self: super: {
         neovim = neovim.packages.${self.system}.neovim;
       };
-
+      
+      # Open and discern at your own risk....
       pluginOverlay = import ./plugins.nix {
         inherit plugins inputs lib;
       };
@@ -34,7 +35,7 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ neovimPackageOverlay pluginOverlay nixdOverlay ];
+        overlays = [ neovimPackageOverlay  nixdOverlay pluginOverlay ];
       };
 
       # The base configuration of all neovim bundles
@@ -59,6 +60,7 @@
         };
       };
 
+      inherit (pkgs) vimPlugins;
       devShells."${system}" = { default = import ./shell.nix { inherit pkgs; inherit (self) packages; }; };
 
       neovimOptions = (lib.evalModules {
@@ -76,7 +78,9 @@
     # the not plugins :) #
     ######################
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    
+    # Nightly Neovim complete with that NEW CAR SMELLLLL!
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

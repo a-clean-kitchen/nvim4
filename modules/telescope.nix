@@ -4,7 +4,7 @@ let
   cfg = config.vim.telescope;
 in {
   config = {
-    vim.startPlugins = with pkgs.myVimPlugins; [
+    vim.startPlugins = with pkgs.vimPlugins; [
       telescope
       nvim-web-devicons
     ];

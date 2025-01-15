@@ -5,7 +5,7 @@ let
 in {
   config = {
     vim = {
-      startPlugins = with pkgs.myVimPlugins; [
+      startPlugins = with pkgs.vimPlugins; [
         ts-autotag
       ];
 

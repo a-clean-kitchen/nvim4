@@ -139,7 +139,7 @@ in
     vim.splitRight = mkDefault true;
     vim.spellCheck.markdown = mkDefault true;
 
-    vim.startPlugins = with pkgs.myVimPlugins; [ 
+    vim.startPlugins = with pkgs.vimPlugins; [ 
       plenary-nvim
     ] ++ cfg.customPlugins;
 
