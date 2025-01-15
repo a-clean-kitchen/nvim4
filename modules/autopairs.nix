@@ -4,7 +4,7 @@ let
   cfg = config.vim.autopairs;
 in {
   config = {
-    vim.startPlugins = with pkgs.myVimPlugins; [
+    vim.startPlugins = with pkgs.vimPlugins; [
       autopairs
     ];
 

@@ -6,7 +6,7 @@ let
   inherit (lib.my) writeIf;
 in {
   config = {
-    vim.startPlugins = with pkgs.myVimPlugins; [
+    vim.startPlugins = with pkgs.vimPlugins; [
       lualine
     ];
     vim.startLuaConfigRC = ''

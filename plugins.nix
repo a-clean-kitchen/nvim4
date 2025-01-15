@@ -1,13 +1,21 @@
-{ plugins, inputs, lib }:
+{ plugins, inputs, lib  }:
 
-super: self:
+self: super:
+
+# References for this file:
+# https://github.com/NixOS/nixpkgs/blob/nixos-24.11/pkgs/applications/editors/neovim/build-neovim-plugin.nix
+# https://github.com/NixOS/nixpkgs/blob/nixos-24.11/pkgs/applications/editors/vim/plugins/overrides.nix
+# https://github.com/NixOS/nixpkgs/blob/nixos-24.11/pkgs/development/lua-modules/overrides.nix
 
 let
-  # https://github.com/NixOS/nixpkgs/blob/d2812bd4a867d367225892058d8b6b613dcf70f9/pkgs/applications/editors/vim/plugins/build-vim-plugin.nix
   inherit (self.vimUtils) buildVimPlugin;
+  inherit (self.neovimUtils) buildNeovimPlugin;
   inherit (lib.attrsets) nameValuePair mapAttrsToList;
   inherit (lib.lists) subtractLists;
+  inherit (lib) makeExtensible extends;
   inherit (builtins) listToAttrs;
+  
+  callPackage = lib.callPackageWith {};
 
   buildPlug = name: buildVimPlugin {
     pname = name;
@@ -16,22 +24,111 @@ let
     dontBuild = true;
   };
 
-  miscPlugins = { 
-#     vim-prettier = buildVimPlugin {
-#       pname = "vim-prettier";
-#       version = "master";
-#       src = builtins.getAttr "vim-prettier" inputs;
-#       buildPhase = ''
-#         ${self.yarn}/bin/yarn install --frozen-lockfile --production
-#       '';
-#     };
+  miscPlugins = {
+    nvim-cmp = buildNeovimPlugin {
+      pname = "nvim-cmp";
+      src = inputs.nvim-cmp.outPath;
+    };
+  }; 
+
+  overrides = {
+    autopairs = {
+      nvimSkipModule = [
+        # Optional completion dependencies
+        "nvim-autopairs.completion.cmp"
+        "nvim-autopairs.completion.compe"
+      ];
+    };
+    catppuccin = {
+      nvimSkipModule = [
+        "catppuccin.groups.integrations.noice"
+        "catppuccin.groups.integrations.feline"
+        "catppuccin.lib.vim.init"
+      ];
+    };
+    cmp-cmdline = {
+      checkInputs = with super.vimPlugins; [ nvim-cmp ];
+    };
+    cmp-luasnip = {
+      checkInputs = with super.vimPlugins; [ nvim-cmp ];
+      dependencies = with super.vimPlugins; [ luasnip ];
+    };
+    cmp-path = {
+      checkInputs = with super.vimPlugins; [ nvim-cmp ];
+    };
+    neo-tree = {
+      dependencies = with super.vimPlugins; [
+        plenary-nvim
+        nui-nvim
+      ];
+    };
+    noice-nvim = {
+      dependencies = with super.vimPlugins; [ nui-nvim ];
+    };
+    nvim-lspsaga = {
+      # Other modules require setup call first
+      nvimRequireCheck = "lspsaga";
+    };
+    nvim-notify = {
+      # Optional fzf integration
+      nvimSkipModule = "notify.integrations.fzf";
+    };
+    plenary-nvim = {
+      postPatch = ''
+        ${self.gnused}/bin/sed -Ei lua/plenary/curl.lua \
+            -e 's@(command\s*=\s*")curl(")@\1${self.curl}/bin/curl\2@'
+      '';
+      nvimSkipModule = [
+        "plenary._meta._luassert"
+        "plenary.neorocks.init"
+      ];
+    };
+    startup-nvim = {
+      dependencies = with super.vimPlugins; [ plenary-nvim ];
+    };
+    telescope = {
+      dependencies = with super.vimPlugins; [ plenary-nvim ];
+    };
+    third-image = {
+      dependencies = with super.vimPlugins; [
+        nvim-treesitter
+        nvim-treesitter-parsers.markdown_inline
+        nvim-treesitter-parsers.norg
+      ];
+
+      # Add magick to package.path
+      patches = [ ./patches/image-nvim/magick.patch ];
+
+      postPatch = ''
+        substituteInPlace lua/image/magick.lua \
+          --replace-fail @nix_magick@ ${super.luajitPackages.magick}
+      '';
+
+      nvimSkipModule = [ "minimal-setup" ];
+    };
+    typescript-tools = {
+      dependencies = with super.vimPlugins; [
+        nvim-lspconfig
+        plenary-nvim
+      ];  
+    };
+    which-key = {
+      nvimSkipModule = [ "which-key.docs" ];
+    };
   };
-in
-{
-  myVimPlugins =
-    let
-      thePlug = listToAttrs (map (n: nameValuePair n (buildPlug n)) 
-        (subtractLists (mapAttrsToList (name: value: name) miscPlugins) plugins));
-    in
-    thePlug // miscPlugins;
+
+
+  myBasePlugins = (listToAttrs 
+      (map (n: nameValuePair n (if (builtins.hasAttr n overrides) then ((buildPlug n).overrideAttrs overrides.${n}) else (buildPlug n))) 
+      (subtractLists (mapAttrsToList (name: value: name) miscPlugins) plugins)))
+    // miscPlugins;
+
+  # myBasePlugins = (listToAttrs 
+  #     (map (n: nameValuePair n (buildPlug n))
+  #     (subtractLists (mapAttrsToList (name: value: name) miscPlugins) plugins)))
+  #   // miscPlugins;
+
+  vimPlugins = super.vimPlugins // myBasePlugins;
+in {
+  inherit vimPlugins; 
 }

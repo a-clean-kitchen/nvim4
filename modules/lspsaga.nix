@@ -12,7 +12,7 @@ in {
         "markdown_inline"
       ];
 
-      startPlugins = with pkgs.myVimPlugins; [
+      startPlugins = with pkgs.vimPlugins; [
         nvim-lspsaga
       ];
 

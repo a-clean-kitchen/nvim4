@@ -21,7 +21,7 @@ in
   
 
   config = mkIf cfg.enable {
-    vim.startPlugins = with pkgs.myVimPlugins; [
+    vim.startPlugins = with pkgs.vimPlugins; [
       luasnip
     ];
 

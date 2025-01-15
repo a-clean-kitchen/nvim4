@@ -54,6 +54,7 @@ in
         "hcl"
         "terraform"
       ];
+
       luaConfigRC = ''
         -- Treesitter config
         require'nvim-treesitter.configs'.setup {
@@ -70,6 +71,7 @@ in
           },
         }
       '';
+
       startPlugins = [ (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: (attrVals config.vim.tsGrammars p))) ];
     };
   };

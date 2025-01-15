@@ -36,7 +36,7 @@ in
   };
 
   config = mkIf cfg.enable ({
-    vim.startPlugins = with pkgs.myVimPlugins; (
+    vim.startPlugins = with pkgs.vimPlugins; (
       (withPlugins (cfg.name == "catppuccin") [ catppuccin ]) ++
       (withPlugins (cfg.name == "everforest") [ everforest ]) ++
       (withPlugins (cfg.name == "rose-pine") [ rose-pine ]) 
