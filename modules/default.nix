@@ -14,6 +14,7 @@
     ./luasnip.nix
     ./startup.nix
     ./lspsaga.nix
+    ./leetcode.nix
     ./nonsense.nix
     ./neo-tree.nix
     ./true-zen.nix
