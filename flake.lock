@@ -398,6 +398,22 @@
         "type": "github"
       }
     },
+    "leetcode-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734538739,
+        "narHash": "sha256-95rto8ccbULPWHU0+TBguGdjmMq/klPxb1isIsxZdLQ=",
+        "owner": "kawre",
+        "repo": "leetcode.nvim",
+        "rev": "db7e1cd6b9191b34b4c1f2f96e4e3949cde9f951",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kawre",
+        "repo": "leetcode.nvim",
+        "type": "github"
+      }
+    },
     "lsp-kind": {
       "flake": false,
       "locked": {
@@ -784,6 +800,7 @@
         "flake-compat": "flake-compat",
         "formatter": "formatter",
         "glow": "glow",
+        "leetcode-nvim": "leetcode-nvim",
         "lsp-kind": "lsp-kind",
         "lualine": "lualine",
         "luasnip": "luasnip",
