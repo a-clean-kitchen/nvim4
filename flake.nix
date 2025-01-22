@@ -281,6 +281,12 @@
       flake = false;
     };
 
+    # leetcode tool
+    leetcode-nvim = {
+      url = "github:kawre/leetcode.nvim";
+      flake = false;
+    };
+
     # just dependencies
     plenary-nvim = {
       url = "github:nvim-lua/plenary.nvim";

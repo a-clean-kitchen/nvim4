@@ -112,8 +112,17 @@ let
     which-key = {
       nvimSkipModule = [ "which-key.docs" ];
     };
-  };
+    leetcode-nvim = {
+      dependencies = with super.vimPlugins; [
+        nui-nvim
+        plenary-nvim
+        telescope-nvim
+      ];
 
+      doInstallCheck = true;
+      nvimRequireCheck = "leetcode";
+    };
+  };
 
   myBasePlugins = (listToAttrs 
       (map (n: nameValuePair n (if (builtins.hasAttr n overrides) then ((buildPlug n).overrideAttrs overrides.${n}) else (buildPlug n))) 

@@ -27,9 +27,19 @@ in
 
     vim.luaConfigRC = /*lua*/ ''
       leetcode.setup {
-        lang = "go",
-        image_support = true,
+        lang = "",
       }
+
+      vim.api.nvim_create_augroup('leetcode', { 
+        clear = true
+      })
+
+      vim.api.nvim_create_autocmd({'Filetype'}, {
+        pattern = "leetcode.nvim",
+        callback = function ()
+          vim.cmd 'setlocal wrap'
+        end
+      })
     '';
   };
 }
