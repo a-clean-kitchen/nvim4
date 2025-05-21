@@ -62,10 +62,6 @@ in
           mapping = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
           description = "Goto previous diagnostic";
         };
-        "<leader>lca" = {
-          mapping = "<cmd>lua vim.lsp.buf.code_action()<CR>";
-          description = "Code action";
-        };
         "<leader>lwa" = {
           mapping = "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>";
           description = "Add workspace folder";
