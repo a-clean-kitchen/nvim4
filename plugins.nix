@@ -58,6 +58,9 @@ let
         plenary-nvim
         nui-nvim
       ];
+      nvimSkipModule = [
+        "neo-tree.types.fixes.compat-0.10"
+      ];
     };
     noice-nvim = {
       dependencies = with super.vimPlugins; [ nui-nvim ];
@@ -90,7 +93,7 @@ let
       dependencies = with super.vimPlugins; [
         nvim-treesitter
         nvim-treesitter-parsers.markdown_inline
-        nvim-treesitter-parsers.norg
+        # nvim-treesitter-parsers.norg
       ];
 
       # Add magick to package.path
