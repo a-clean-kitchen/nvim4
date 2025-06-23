@@ -60,6 +60,12 @@ in
       default = "";
     };
 
+    cmpLuaConfig = mkOption {
+      description = "vim cmp lua config";
+      type = types.lines;
+      default = "";
+    };
+
     startPlugins = mkOption {
       description = "List of plugins to startup";
       default = [ ];

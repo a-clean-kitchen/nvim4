@@ -36,6 +36,9 @@
       pkgs = import nixpkgs {
         inherit system;
         overlays = [ neovimPackageOverlay  nixdOverlay pluginOverlay ];
+        config = {
+          allowUnfree = true;
+        };
       };
 
       # The base configuration of all neovim bundles

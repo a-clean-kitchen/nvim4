@@ -32,7 +32,7 @@ let
           ${vim.luaHelperStuff}
           ${vim.startLuaConfigRC}
           ${vim.luaConfigRC}
-
+          ${vim.cmpLuaConfig}
           ${vim.finalKeybindings}
         '';
       };

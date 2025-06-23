@@ -12,7 +12,7 @@ let
   inherit (self.neovimUtils) buildNeovimPlugin;
   inherit (lib.attrsets) nameValuePair mapAttrsToList;
   inherit (lib.lists) subtractLists;
-  inherit (builtins) listToAttrs;
+  inherit (builtins) listToAttrs throw fetchurl;
 
   buildPlug = name: buildVimPlugin {
     pname = name;
