@@ -22,6 +22,7 @@ in
         "hyprlang"
         "fish"
         "tmux"
+        "yuck"
 
         # git
         "git_config"

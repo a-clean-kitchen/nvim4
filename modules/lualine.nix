@@ -43,6 +43,11 @@ in {
           },
         },
       })
+      ${writeIf config.vim.windsurf.enable /*lua*/ ''
+        require('codeium.virtual_text').set_statusbar_refresh(function()
+          require('lualine').refresh()
+        end)
+      ''}
     '';
   };
 }

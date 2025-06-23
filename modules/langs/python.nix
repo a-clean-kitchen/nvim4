@@ -9,7 +9,7 @@ in {
       lsp.lspconfigSetup = /*lua*/ ''
         -- Python config
         lspconfig.pylsp.setup {
-          cmd = { testForLSPBinaryOnPath("pylsp", "${pkgs.python311Packages.python-lsp-server}/bin/pylsp") }
+          cmd = { testForLSPBinaryOnPath("pylsp", "${pkgs.python313Packages.python-lsp-server}/bin/pylsp") }
         }
       '';
     };

@@ -22,7 +22,6 @@ in
     vim.startPlugins = with pkgs.vimPlugins; [
      nvim-cmp
      cmp-buffer
-     cmp-nvim-lsp
      cmp-path
      cmp-treesitter
      cmp-cmdline
@@ -37,7 +36,7 @@ in
       if (not status) then return end
     '';
  
-    vim.luaConfigRC = /*lua*/ ''
+    vim.cmpLuaConfig = /*lua*/ ''
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -50,7 +49,11 @@ in
           end,
         },
         formatting = {
-          format = lspkind.cmp_format({with_text = true, maxwidth = 50}) 
+          format = lspkind.cmp_format({
+            with_text = true, 
+            maxwidth = 50,
+            symbol_map = { Codeium = "", }
+          }) 
         },
         completion = {
           completeopt = 'menu,menuone,noinsert',
@@ -91,6 +94,7 @@ in
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
+          ${writeIf config.vim.windsurf.enable ''{ name = "codeium" },''}
           { name = "path" },
         }, {
           { name = "buffer" },
