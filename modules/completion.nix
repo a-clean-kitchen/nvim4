@@ -51,7 +51,7 @@ in
         formatting = {
           format = lspkind.cmp_format({
             mode = "symbol_text",
-            with_text = true, 
+            symbol_map = { Codeium = "", },
             maxwidth = {
               menu = 50,
               abbr = 50,
