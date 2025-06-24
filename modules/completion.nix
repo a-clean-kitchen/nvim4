@@ -36,7 +36,7 @@ in
       if (not status) then return end
     '';
  
-    vim.cmpLuaConfig = /*lua*/ ''
+    vim.luaConfigRC = /*lua*/ ''
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -50,9 +50,13 @@ in
         },
         formatting = {
           format = lspkind.cmp_format({
+            mode = "symbol_text",
             with_text = true, 
-            maxwidth = 50,
-            symbol_map = { Codeium = "", }
+            maxwidth = {
+              menu = 50,
+              abbr = 50,
+            },
+            show_labelDetails = true,
           }) 
         },
         completion = {
