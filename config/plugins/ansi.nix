@@ -19,26 +19,40 @@ in
       {
         pkg = config.plugins.baleia.package;
         name = "baleia";
-        config.__raw = /*lua*/ ''
+        config.__raw =''
           function()
             vim.g.baleia = require("baleia").setup({ })
-
-            -- Command to colorize the current buffer
-            vim.api.nvim_create_user_command("BaleiaColorize", function()
-              vim.g.baleia.once(vim.api.nvim_get_current_buf())
-            end, { bang = true })
-
-            ${lib.optionalString config.vim.snacks.dashboard.enable ''vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-              pattern = "snacks_dashboard",
-              callback = function()
-                vim.g.baleia.automatically(vim.api.nvim_get_current_buf())
-              end,
-            })''}
           end
         '';
         event = "VimEnter";
       }
     ];
+
+    autoCmd = [] ++ (lib.optionals config.vim.snacks.dashboard.enable [
+      {
+        event = [
+          "BufWinEnter"
+        ];
+        pattern = [
+          "snacks_dashboard"
+        ];
+        callback.__raw = /*lua*/ ''
+          function()
+            vim.g.baleia.automatically(vim.api.nvim_get_current_buf())
+          end
+        '';
+      }
+    ]);
+    userCommands = {
+      "BaleriaColorize" = {
+        command.__raw = /*lua*/ ''
+          function()
+            vim.g.baleia.once(vim.api.nvim_get_current_buf())
+          end
+        '';
+        bang = true;
+      };
+    };
   };
 }
 

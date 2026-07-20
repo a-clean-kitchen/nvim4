@@ -17,6 +17,12 @@ in
 
 
   config = mkIf cfg.enable {
+    vim.which-key.groups = [
+      {
+        __unkeyed-1 = "<leader>z";
+        group = "zen modes";
+      }
+    ];
     plugins.lazy.plugins = [
       {
         pkg = pkgs.vimPlugins.true-zen-nvim;
@@ -24,7 +30,13 @@ in
           twilight-nvim
         ];
         name = "true-zen";
-        opts.__raw = "{}";
+        opts= {
+          minimalist = {
+            options = {
+              showtabline = 0;
+            };
+          };
+        };
         event = [
           "VeryLazy"
         ];

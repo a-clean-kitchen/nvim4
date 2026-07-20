@@ -36,6 +36,6 @@ _: {
 
     # To be continued...
     # ./plugins/nonsense.nix
-    # ./plugins/terminal.nix
+    # ./plugins/claude.nix
   ];
 }

@@ -17,6 +17,12 @@ in
 
 
   config = mkIf cfg.enable {
+    vim.which-key.groups = [
+      {
+        __unkeyed-1 = "<leader>lc";
+        group = "leetcode";
+      }
+    ];
     plugins.lazy.plugins = [
       {
         pkg = config.plugins.leetcode.package;
