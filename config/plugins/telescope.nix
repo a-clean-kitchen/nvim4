@@ -50,37 +50,5 @@ in {
         ];
       }
     ];
-    # plugins.telescope = {
-    #   enable = true;
-    #   extensions = {
-    #     fzf-native.enable = true;
-    #   };
-    #   keymaps = {
-    #     "<leader>ff" = {
-    #       action = "find_files";
-    #       options = {
-    #         desc = "Find Files";
-    #       };
-    #     };
-    #     "<leader>fg" = {
-    #       action = "live_grep";
-    #       options = {
-    #         desc = "Live Grep";
-    #       };
-    #     };
-    #     "<leader>fb" = {
-    #       action = "buffers";
-    #       options = {
-    #         desc = "List Buffers";
-    #       };
-    #     };
-    #     "<leader>fh" = {
-    #       action = "help_tags";
-    #       options = {
-    #         desc = "Help Tag Search";
-    #       };
-    #     };
-    #   };
-    # };
   };
 }

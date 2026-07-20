@@ -2,6 +2,20 @@
 
 {
   config = {
+    vim.which-key.groups = [
+      {
+        __unkeyed-1 = "<leader>q";
+        group = "to close nvim";
+      }
+      {
+        __unkeyed-1 = "<leader>b";
+        group = "buffers";
+      }
+      {
+        __unkeyed-1 = "<leader>w";
+        group = "windows";
+      }
+    ];
     keymaps = [
       {
         action = "<cmd>q<CR>";

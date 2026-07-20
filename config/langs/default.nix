@@ -30,6 +30,7 @@ in
     lsp = {
       servers."*" = {
         config = {
+          workspace_required = true;
           capabilities = {
             textDocument = {
               semanticTokens = {

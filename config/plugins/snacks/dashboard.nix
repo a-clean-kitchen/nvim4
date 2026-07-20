@@ -3,7 +3,7 @@
 let
   cfg = config.vim.snacks.dashboard;
 
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkIf mkOption types optionalAttrs;
   inherit (lib.nixvim) mkRaw;
 
   newGH = pkgs.buildEnv {
@@ -26,7 +26,7 @@ in
 
   config = mkIf cfg.enable {
     vim.snacks.dashboard = {
-      settings = {
+      settings = optionalAttrs cfg.enable {
         enabled = cfg.enable;
         sections = [
           {

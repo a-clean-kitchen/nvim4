@@ -7,6 +7,7 @@ let
 in
 {
   imports = [
+    ./terminal.nix
     ./dashboard.nix
   ];
 
@@ -34,6 +35,7 @@ in
         ];
         opts = {
           dashboard = config.vim.snacks.dashboard.settings;
+          terminal = config.vim.snacks.terminal.settings;
         };
       }
     ];

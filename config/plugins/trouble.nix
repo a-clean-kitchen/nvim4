@@ -24,7 +24,6 @@ in
         ];
         name = "trouble";
         cmd = "Trouble";
-        opts.__raw = "{}";
         config.__raw = /*lua*/ ''
           function()
             vim.api.nvim_create_user_command("TodoPanel", function()
@@ -83,8 +82,17 @@ in
         '';
         keys = mkLazyKeys [
           {
+            bind = "<leader>t";
+            cmd.__raw = "nil";
+            desc = "trouble";
+          }
+          {
             bind = "<leader>tx";
-            cmd = "<cmd>Trouble diagnostics toggle<cr>";
+            cmd.__raw = ''
+              function()
+                require("trouble").toggle("diagnostics")
+              end
+            '';
             desc = "Diagnostics (Trouble)";
           }
           {
@@ -94,7 +102,7 @@ in
           }
           {
             bind = "<leader>ts";
-            cmd = "<cmd>Trouble lsp_document_symbols toggle win.type=split win.position=right win.size=0.5<cr>";
+            cmd = "<cmd>Trouble lsp_document_symbols toggle win.type=split win.position=right win.size=0.4<cr>";
             desc = "Symbols (Trouble)";
           }
           {
